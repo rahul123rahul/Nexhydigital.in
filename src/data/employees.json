@@ -1,0 +1,18 @@
+{
+  "nextId": "EMP-001",
+  "employees": [
+    {
+      "id": "EMP-001",
+      "name": "Admin User",
+      "email": "admin@hygenx.in",
+      "phone": "+91 98765 00001",
+      "address": "Hyderabad, Telangana, India",
+      "username": "admin",
+      "passwordHash": "",
+      "role": "Admin",
+      "specialization": "Full-Stack",
+      "active": true,
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    }
+  ]
+}

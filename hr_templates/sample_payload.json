@@ -1,0 +1,25 @@
+{
+  "employee": {
+    "name": "Asha Mehta",
+    "id": "EMP-007",
+    "designation": "Software Engineer",
+    "department": "Engineering",
+    "joiningDate": "2026-06-01",
+    "salary": "₹85,000 per month",
+    "address": "Bangalore, Karnataka",
+    "pan": "AAXPU1234C",
+    "bankDetails": "HDFC Bank, A/C 1234567890"
+  },
+  "company": {
+    "name": "Nexhydigital Technologies Pvt Ltd",
+    "address": "Bangalore, India",
+    "jurisdiction": "India",
+    "contactEmail": "hr@hygenx.in",
+    "website": "https://hygenx.in"
+  },
+  "document": {
+    "type": "offer",
+    "templateId": "offer_v1",
+    "effectiveDate": "2026-05-21"
+  }
+}

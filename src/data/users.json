@@ -1,0 +1,102 @@
+{
+  "users": [
+    {
+      "id": "usr-001",
+      "employeeId": "EMP-001",
+      "username": "admin",
+      "password": "Nexhydigital@123",
+      "role": "super_admin",
+      "name": "Super Admin",
+      "email": "admin@hygenx.in",
+      "phone": "+91 98765 00001",
+      "department": "Administration",
+      "avatar": "SA",
+      "redirectTo": "/admin",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "usr-002",
+      "employeeId": "EMP-002",
+      "username": "hrmanager",
+      "password": "HRManager@2026",
+      "role": "hr_manager",
+      "name": "Priya Sharma",
+      "email": "priya.sharma@hygenx.in",
+      "phone": "+91 98765 00002",
+      "department": "Human Resources",
+      "avatar": "PS",
+      "redirectTo": "/admin/hr",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "usr-003",
+      "employeeId": "EMP-003",
+      "username": "hrstaff",
+      "password": "HRStaff@2026",
+      "role": "hr_staff",
+      "name": "Ravi Kumar",
+      "email": "ravi.kumar@hygenx.in",
+      "phone": "+91 98765 00003",
+      "department": "Human Resources",
+      "avatar": "RK",
+      "redirectTo": "/admin/hr",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "usr-004",
+      "employeeId": "EMP-004",
+      "username": "recruiter",
+      "password": "Recruit@2026",
+      "role": "recruiter",
+      "name": "Anita Patel",
+      "email": "anita.patel@hygenx.in",
+      "phone": "+91 98765 00004",
+      "department": "Talent Acquisition",
+      "avatar": "AP",
+      "redirectTo": "/admin/hr",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "usr-005",
+      "employeeId": "EMP-005",
+      "username": "employee",
+      "password": "Employee@2026",
+      "role": "employee",
+      "name": "Rohit Verma",
+      "email": "rohit.verma@hygenx.in",
+      "phone": "+91 98765 00005",
+      "department": "Engineering",
+      "avatar": "RV",
+      "redirectTo": "/admin/ess",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
+      "id": "usr-006",
+      "employeeId": "EMP-006",
+      "username": "onboardingtestcustomer",
+      "password": "Client@882498",
+      "role": "client",
+      "name": "Onboarding Test Customer",
+      "email": "testcustomer@example.com",
+      "phone": "9999988888",
+      "department": "Client Portal",
+      "avatar": "OC",
+      "redirectTo": "/customer/dashboard",
+      "createdAt": "2026-06-14T06:55:47.693Z"
+    },
+    {
+      "id": "usr-007",
+      "employeeId": "EMP-007",
+      "username": "rahul",
+      "password": "Client@109884",
+      "role": "client",
+      "name": "rahul",
+      "email": "rahulrlr43@gmail.com",
+      "phone": "9603230138",
+      "department": "Client Portal",
+      "avatar": "RA",
+      "redirectTo": "/customer/dashboard",
+      "createdAt": "2026-06-14T07:59:37.720Z"
+    }
+  ]
+}

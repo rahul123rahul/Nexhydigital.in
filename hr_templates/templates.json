@@ -1,0 +1,32 @@
+{
+  "offer_v1": {
+    "file": "offer_v1.md",
+    "title": "Offer Letter",
+    "category": "Recruitment",
+    "requiredFields": ["employee.name","employee.designation","employee.joiningDate","company.name","document.effectiveDate"]
+  },
+  "experience_v1": {
+    "file": "experience_v1.md",
+    "title": "Experience Certificate",
+    "category": "Separation",
+    "requiredFields": ["employee.name","employee.designation","employee.joiningDate","employee.exitDate","company.name"]
+  },
+  "terms_v1": {
+    "file": "terms_v1.md",
+    "title": "Terms & Conditions",
+    "category": "Policy",
+    "requiredFields": ["company.name","company.jurisdiction","document.effectiveDate"]
+  },
+  "privacy_v1": {
+    "file": "privacy_v1.md",
+    "title": "Privacy Policy",
+    "category": "Policy",
+    "requiredFields": ["company.name","company.jurisdiction","document.effectiveDate"]
+  },
+  "nda_v1": {
+    "file": "nda_v1.md",
+    "title": "Non-Disclosure Agreement",
+    "category": "Legal",
+    "requiredFields": ["employee.name","company.name","document.effectiveDate"]
+  }
+}
