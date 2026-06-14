@@ -68,20 +68,33 @@ function nextEmployeeIdFrom(ids) {
 }
 
 // Helper to check if database exists and try connecting
-try {
-  pool = new Pool({
-    ...dbConfig,
-    connectionTimeoutMillis: 3000,
-  });
-  
-  // Test query
-  await pool.query("SELECT 1");
-  isPostgresConnected = true;
-  console.log("⚡ [Database] PostgreSQL connected successfully on port " + dbConfig.port);
-} catch (err) {
+const isBuildPhase = process.env.NEXT_PHASE === "phase-production-build";
+
+if (!isBuildPhase) {
+  try {
+    pool = new Pool({
+      ...dbConfig,
+      connectionTimeoutMillis: 3000,
+    });
+    
+    // Test query
+    await pool.query("SELECT 1");
+    isPostgresConnected = true;
+    console.log("⚡ [Database] PostgreSQL connected successfully on port " + dbConfig.port);
+  } catch (err) {
+    isPostgresConnected = false;
+    console.warn("⚠️ [Database] PostgreSQL connection failed: " + err.message);
+    console.warn("⚠️ [Database] Falling back to local JSON database inside 'src/data/*.json'");
+    if (pool) {
+      try {
+        await pool.end();
+      } catch (e) {}
+      pool = null;
+    }
+  }
+} else {
   isPostgresConnected = false;
-  console.warn("⚠️ [Database] PostgreSQL connection failed: " + err.message);
-  console.warn("⚠️ [Database] Falling back to local JSON database inside 'src/data/*.json'");
+  console.log("🚧 [Database] Skipping PostgreSQL connection during Next.js build phase.");
 }
 
 // ── Fallback Helpers ──────────────────────────────────────────────────
