@@ -44,6 +44,9 @@ export const metadata = {
     shortcut: "/favicon.ico",
     apple: "/logo-mark.png",
   },
+  verification: {
+    google: "Ikuj6Ga2kqWGvuWQuZCyB3-UkzYiyzNU-6eaWB4A72w",
+  },
 };
 
 export default function RootLayout({ children }) {
