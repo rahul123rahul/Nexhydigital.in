@@ -59,7 +59,7 @@ export default function PrivacyPage() {
               <div>
                 <h2 style={{ fontSize: "1.5rem", fontWeight: 700, marginBottom: "16px", color: "var(--primary)" }}>5. Contact Information</h2>
                 <p style={{ color: "var(--muted)", margin: 0 }}>
-                  If you have questions about our privacy policies or want to request the removal of your personal information from our CRM, please contact us at <a href="mailto:hello@hygenx.in" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>hello@hygenx.in</a> or visit our office in Hyderabad, India.
+                  If you have questions about our privacy policies or want to request the removal of your personal information from our CRM, please contact us at <a href="mailto:hello@nexhydigital.in" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>hello@nexhydigital.in</a> or visit our office in Hyderabad, India.
                 </p>
               </div>
 

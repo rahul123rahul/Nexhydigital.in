@@ -49,9 +49,67 @@ export const metadata = {
   },
 };
 
+const organizationSchema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Nexhy Digital",
+  "url": "https://nexhydigital.in",
+  "logo": "https://nexhydigital.in/logo.png",
+  "sameAs": [
+    "https://github.com/rahul123rahul/Nexhydigital.in"
+  ]
+};
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Nexhy Digital",
+  "url": "https://nexhydigital.in",
+  "logo": "https://nexhydigital.in/logo.png",
+  "image": "https://nexhydigital.in/logo.png",
+  "telephone": "+91 9603230138",
+  "email": "hello@nexhydigital.in",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Hitech City",
+    "addressLocality": "Hyderabad",
+    "addressRegion": "Telangana",
+    "postalCode": "500081",
+    "addressCountry": "IN"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "17.4483",
+    "longitude": "78.3741"
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday"
+    ],
+    "opens": "09:00",
+    "closes": "18:00"
+  }
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+      </head>
       <body suppressHydrationWarning>
         <SiteHeader />
         {children}
