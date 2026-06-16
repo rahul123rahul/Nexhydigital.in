@@ -1,5 +1,5 @@
 -- ═══════════════════════════════════════════════════════════════════════
---  Nexhydigital HR Suite — PostgreSQL Database Setup Script
+--  Nexhydigital CRM & HR Suite — PostgreSQL Database Setup Script
 --  Run this in pgAdmin Query Tool or psql as superuser
 --  psql -U postgres -f setup-db.sql
 -- ═══════════════════════════════════════════════════════════════════════
@@ -11,7 +11,7 @@ WHERE NOT EXISTS (SELECT FROM pg_database WHERE datname = 'hygenx')\gexec
 -- 2. Connect to hygenx database
 \connect hygenx
 
--- ── Users Table ─────────────────────────────────────────────────────────
+-- ── 1. Users Table ────────────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS users (
   id          VARCHAR(50)  PRIMARY KEY,
   username    VARCHAR(50)  UNIQUE NOT NULL,
@@ -25,64 +25,72 @@ CREATE TABLE IF NOT EXISTS users (
 
 INSERT INTO users (id, username, password, role, name, email, department, avatar)
 VALUES
-  ('usr-001', 'admin',      'Nexhydigital@123',     'super_admin', 'Super Admin',   'admin@hygenx.in',       'Administration',     'SA'),
   ('usr-002', 'hrmanager',  'HRManager@2026', 'hr_manager',  'Priya Sharma',  'priya.sharma@hygenx.in','Human Resources',    'PS'),
   ('usr-003', 'hrstaff',    'HRStaff@2026',   'hr_staff',    'Ravi Kumar',    'ravi.kumar@hygenx.in',  'Human Resources',    'RK'),
   ('usr-004', 'recruiter',  'Recruit@2026',   'recruiter',   'Anita Patel',   'anita.patel@hygenx.in', 'Talent Acquisition', 'AP'),
   ('usr-005', 'employee',   'Employee@2026',  'employee',    'Rohit Verma',   'rohit.verma@hygenx.in', 'Engineering',        'RV')
 ON CONFLICT (id) DO NOTHING;
 
--- ── Careers (Job Listings) ───────────────────────────────────────────────
+-- ── 2. Careers (Job Listings) ─────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS careers (
-  id           VARCHAR(50)  PRIMARY KEY,
-  title        VARCHAR(150) NOT NULL,
-  dept         VARCHAR(100) NOT NULL,
-  type         VARCHAR(50)  NOT NULL,
-  loc          VARCHAR(100) NOT NULL,
-  open         VARCHAR(50)  NOT NULL,
-  description  TEXT         NOT NULL,
-  requirements JSONB        DEFAULT '[]'::jsonb,
-  published    BOOLEAN      DEFAULT TRUE,
-  posted       VARCHAR(50)
+  id               VARCHAR(50)  PRIMARY KEY,
+  title            VARCHAR(150) NOT NULL,
+  dept             VARCHAR(100) NOT NULL,
+  type             VARCHAR(50)  NOT NULL,
+  loc              VARCHAR(100) NOT NULL,
+  open             VARCHAR(50)  NOT NULL,
+  description      TEXT         NOT NULL,
+  requirements     JSONB        DEFAULT '[]'::jsonb,
+  published        BOOLEAN      DEFAULT TRUE,
+  posted           VARCHAR(50),
+  "formSchema"     JSONB        DEFAULT NULL,
+  "applyLink"      TEXT         DEFAULT '',
+  "applyMode"      VARCHAR(20)  DEFAULT 'internal',
+  "applyButtonText" VARCHAR(100) DEFAULT 'Apply Now',
+  "openInNewTab"   BOOLEAN      DEFAULT TRUE,
+  "applyClicks"    INTEGER      DEFAULT 0,
+  submissions      INTEGER      DEFAULT 0
 );
 
 INSERT INTO careers (id, title, dept, type, loc, open, description, requirements, published, posted)
 VALUES
   ('JOB-001', 'Senior React Developer',  'Engineering', 'Full-time', 'Bangalore', '2',
-   'Experienced Frontend Engineer with React expertise.',
-   '["5+ years React","NextJS & CSS","State management"]'::jsonb, true, '2026-05-01'),
+   'We are looking for an experienced Frontend Engineer with specialized React expertise.',
+   '["5+ years of React development","Experience with NextJS & CSS","State management solutions"]'::jsonb, true, '2026-05-01'),
   ('JOB-002', 'HR Business Partner',     'HR',          'Full-time', 'Mumbai',    '1',
-   'Join our people operations team.',
-   '["3+ years HR","MBA in HR preferred","Grievance handling"]'::jsonb, true, '2026-05-03'),
+   'Join our core people operations team to align staff with corporate strategies.',
+   '["3+ years HR experience","MBA in HR preferred","Strong grievance handling skills"]'::jsonb, true, '2026-05-03'),
   ('JOB-003', 'DevOps Engineer',         'Engineering', 'Full-time', 'Remote',    '1',
-   'Manage infrastructure automations and container orchestration.',
-   '["AWS or Azure Cert","Docker & Kubernetes","CI/CD Pipelines"]'::jsonb, true, '2026-04-28')
+   'Manage infrastructure automations, deployments and container orchestrations.',
+   '["AWS or Azure Certification","Docker & Kubernetes","CI/CD Pipelines"]'::jsonb, true, '2026-04-28')
 ON CONFLICT (id) DO NOTHING;
 
--- ── Candidates (ATS Pipeline) ────────────────────────────────────────────
+-- ── 3. Candidates (ATS Pipeline) ──────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS candidates (
-  id         VARCHAR(50)  PRIMARY KEY,
-  name       VARCHAR(100) NOT NULL,
-  email      VARCHAR(100) NOT NULL,
-  phone      VARCHAR(50)  NOT NULL,
-  experience VARCHAR(50),
-  source     VARCHAR(50)  NOT NULL,
-  stage      VARCHAR(50)  NOT NULL,
-  score      INTEGER      DEFAULT 0,
-  applied    VARCHAR(50)  NOT NULL,
-  reason     TEXT,
-  job_id     VARCHAR(50)
+  id          VARCHAR(50)  PRIMARY KEY,
+  name        VARCHAR(100) NOT NULL,
+  email       VARCHAR(100) NOT NULL,
+  phone       VARCHAR(50)  NOT NULL,
+  experience  VARCHAR(50),
+  source      VARCHAR(50)  NOT NULL,
+  stage       VARCHAR(50)  NOT NULL,
+  score       INTEGER      DEFAULT 0,
+  applied     VARCHAR(50)  NOT NULL,
+  reason      TEXT,
+  job_id      VARCHAR(50),
+  attachments JSONB        DEFAULT '[]'::jsonb,
+  form_data   JSONB        DEFAULT '{}'::jsonb
 );
 
 INSERT INTO candidates (id, name, email, phone, experience, source, stage, score, applied, reason, job_id)
 VALUES
-  ('CAN-001', 'Rahul Das',     'rahul.das@email.com',   '+91 91234 56789', '4 years', 'LinkedIn', 'Interview',    88, '2026-05-10', 'Strong state management experience.', 'JOB-001'),
-  ('CAN-002', 'Pooja Mishra',  'pooja.mishra@email.com','+91 91234 56780', '3 years', 'Naukri',   'Screening',    75, '2026-05-12', 'Good HR communication skills.',        'JOB-002'),
+  ('CAN-001', 'Rahul Das',     'rahul.das@email.com',   '+91 91234 56789', '4 years', 'LinkedIn', 'Interview',    88, '2026-05-10', 'Strong experience in state management.', 'JOB-001'),
+  ('CAN-002', 'Pooja Mishra',  'pooja.mishra@email.com','+91 91234 56780', '3 years', 'Naukri',   'Screening',    75, '2026-05-12', 'Good communication skills, HR background.', 'JOB-002'),
   ('CAN-003', 'Amit Jain',     'amit.jain@email.com',   '+91 91234 56781', '6 years', 'Indeed',   'Selection',    92, '2026-05-08', 'Excellent AWS knowledge.',             'JOB-003'),
-  ('CAN-004', 'Nikhil Sharma', 'nikhil.sharma@email.com','+91 91234 56782','2 years', 'Referral', 'Applications', 68, '2026-05-15', 'Creative portfolio, entry level.',     'JOB-001')
+  ('CAN-004', 'Nikhil Sharma', 'nikhil.sharma@email.com','+91 91234 56782','2 years', 'Referral', 'Applications', 68, '2026-05-15', 'Entry level designer, creative portfolio.', 'JOB-001')
 ON CONFLICT (id) DO NOTHING;
 
--- ── Employees ────────────────────────────────────────────────────────────
+-- ── 4. Employees ──────────────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS employees (
   id        VARCHAR(50)  PRIMARY KEY,
   name      VARCHAR(100) NOT NULL,
@@ -110,7 +118,7 @@ VALUES
   ('EMP-012', 'Sneha Gupta',   'sneha.gupta@hygenx.in',   '+91 98765 43221', 'Engineering', 'Product Manager',   'Arjun Sharma', '2023-08-22', 'Active',   105000, 'Product,Agile,Roadmap',         'SG', '#f59e0b')
 ON CONFLICT (id) DO NOTHING;
 
--- ── Attendance ───────────────────────────────────────────────────────────
+-- ── 5. Attendance ─────────────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS attendance (
   id     SERIAL       PRIMARY KEY,
   emp_id VARCHAR(50)  NOT NULL,
@@ -129,9 +137,10 @@ VALUES
   ('EMP-002', 'Priya Sharma', '2026-05-20', '08:55', '17:55', '9h 0m',  'Present', 'Office'),
   ('EMP-003', 'Rohit Verma',  '2026-05-20', '10:15', '19:00', '8h 45m', 'Late',    'WFH'),
   ('EMP-004', 'Sunita Patel', '2026-05-20', '09:00', '18:00', '9h 0m',  'Present', 'Office'),
-  ('EMP-006', 'Anita Patel',  '2026-05-20', '09:10', '18:10', '9h 0m',  'Present', 'Office');
+  ('EMP-006', 'Anita Patel',  '2026-05-20', '09:10', '18:10', '9h 0m',  'Present', 'Office')
+ON CONFLICT (id) DO NOTHING;
 
--- ── Leaves ───────────────────────────────────────────────────────────────
+-- ── 6. Leaves ─────────────────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS leaves (
   id        VARCHAR(50)  PRIMARY KEY,
   emp_id    VARCHAR(50)  NOT NULL,
@@ -152,25 +161,30 @@ VALUES
   ('LV-003', 'EMP-006', 'Anita Patel',  'Casual Leave',  '2026-05-20', '2026-05-20', 1, 'Personal work',   'Pending',  '2026-05-19')
 ON CONFLICT (id) DO NOTHING;
 
--- ── Helpdesk Tickets ─────────────────────────────────────────────────────
+-- ── 7. Helpdesk Tickets ──────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS tickets (
-  id        VARCHAR(50)  PRIMARY KEY,
-  sub       VARCHAR(150) NOT NULL,
-  cat       VARCHAR(50)  NOT NULL,
-  pri       VARCHAR(50)  NOT NULL,
-  desc_text TEXT,
-  status    VARCHAR(50)  NOT NULL,
-  by_user   VARCHAR(100) NOT NULL,
-  date      VARCHAR(50)  NOT NULL
+  id         VARCHAR(50)  PRIMARY KEY,
+  sub        VARCHAR(150) NOT NULL,
+  cat        VARCHAR(50)  NOT NULL,
+  pri        VARCHAR(50)  NOT NULL,
+  desc_text  TEXT,
+  status     VARCHAR(50)  NOT NULL,
+  by_user    VARCHAR(100) NOT NULL,
+  date       VARCHAR(50)  NOT NULL,
+  assignee   VARCHAR(100) DEFAULT 'HR Ops',
+  channel    VARCHAR(50)  DEFAULT 'Portal',
+  due_date   VARCHAR(50),
+  sla_hours  INTEGER      DEFAULT 24,
+  resolution TEXT         DEFAULT ''
 );
 
 INSERT INTO tickets (id, sub, cat, pri, desc_text, status, by_user, date)
 VALUES
-  ('TKT-001', 'Unable to access payslip portal',         'HR Query',           'High',   'Error when fetching payslip for April 2026.', 'Open',        'Rohit Verma',  '2026-05-19'),
+  ('TKT-001', 'Unable to access payslip portal',         'HR Query',           'High',   'Error occurs when trying to fetch payslip for April 2026.', 'Open',        'Rohit Verma',  '2026-05-19'),
   ('TKT-002', 'Leave policy clarification for Comp-Off', 'Policy Clarification','Medium', 'How do comp offs credit to leaf account?',   'In Progress', 'Karan Mehta',  '2026-05-18')
 ON CONFLICT (id) DO NOTHING;
 
--- ── Exit Management ──────────────────────────────────────────────────────
+-- ── 8. Exit Management ───────────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS exits (
   id       VARCHAR(50)  PRIMARY KEY,
   name     VARCHAR(100) NOT NULL,
@@ -183,10 +197,11 @@ CREATE TABLE IF NOT EXISTS exits (
 );
 
 INSERT INTO exits (id, name, emp_id, dept, res_date, lwd, stage, ff)
-VALUES ('EXIT-001', 'Deepak Joshi', 'EMP-009', 'Operations', '2026-05-01', '2026-05-31', 1, 78000)
+VALUES
+  ('EXIT-001', 'Deepak Joshi', 'EMP-009', 'Operations', '2026-05-01', '2026-05-31', 1, 78000)
 ON CONFLICT (id) DO NOTHING;
 
--- ── Contact & Quote Requests ─────────────────────────────────────────────
+-- ── 9. Contact Requests Table ────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS contact_requests (
   id         SERIAL       PRIMARY KEY,
   name       VARCHAR(100) NOT NULL,
@@ -195,9 +210,14 @@ CREATE TABLE IF NOT EXISTS contact_requests (
   service    VARCHAR(100),
   message    TEXT,
   status     VARCHAR(50)  DEFAULT 'Pending',
-  created_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
+  created_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+  budget     VARCHAR(50)  DEFAULT '',
+  stage      VARCHAR(50)  DEFAULT 'New',
+  notes      TEXT         DEFAULT '',
+  source     VARCHAR(100) DEFAULT 'Website Form'
 );
 
+-- ── 10. Quote Requests Table ─────────────────────────────────────────────
 CREATE TABLE IF NOT EXISTS quote_requests (
   id          SERIAL       PRIMARY KEY,
   name        VARCHAR(100) NOT NULL,
@@ -210,7 +230,179 @@ CREATE TABLE IF NOT EXISTS quote_requests (
   created_at  TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
 );
 
--- ── Document Templates ───────────────────────────────────────────────────
+-- ── 11. Pricing Plans Table ──────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS pricing_plans (
+  id            VARCHAR(50)  PRIMARY KEY,
+  name          VARCHAR(100) NOT NULL,
+  price         VARCHAR(100) NOT NULL,
+  billing_cycle VARCHAR(50)  DEFAULT 'one-time',
+  free_trial_days INTEGER    DEFAULT 0,
+  active        BOOLEAN      DEFAULT TRUE,
+  features      JSONB        NOT NULL
+);
+
+INSERT INTO pricing_plans (id, name, price, billing_cycle, free_trial_days, active, features)
+VALUES
+  ('basic', 'Basic Website', '₹10,000–₹20,000', 'one-time', 0, true, '{"pages": "Up to 5", "responsive": "✓", "contactForm": "✓", "seoSetup": "Basic", "blogModule": "✗", "cmsPanel": "✗", "customDesign": "✗", "paymentGateway": "✗", "productMgmt": "✗", "userLogin": "✗", "analytics": "✓", "support": "1 Month"}'::jsonb),
+  ('business', 'Business Website', '₹25,000–₹50,000', 'one-time', 0, true, '{"pages": "Up to 15", "responsive": "✓", "contactForm": "✓", "seoSetup": "Advanced", "blogModule": "✓", "cmsPanel": "✓", "customDesign": "✓", "paymentGateway": "✗", "productMgmt": "✗", "userLogin": "Optional", "analytics": "✓", "support": "3 Months"}'::jsonb),
+  ('premium', 'Premium Website', '₹60,000–₹1,00,000+', 'one-time', 0, true, '{"pages": "Unlimited", "responsive": "✓", "contactForm": "✓", "seoSetup": "Advanced", "blogModule": "✓", "cmsPanel": "✓", "customDesign": "✓", "paymentGateway": "Optional", "productMgmt": "Optional", "userLogin": "✓", "analytics": "✓", "support": "6 Months"}'::jsonb),
+  ('ecommerce', 'E-Commerce Website', '₹50,000–₹2,00,000+', 'one-time', 0, true, '{"pages": "Unlimited", "responsive": "✓", "contactForm": "✓", "seoSetup": "Advanced", "blogModule": "✓", "cmsPanel": "✓", "customDesign": "✓", "paymentGateway": "✓", "productMgmt": "✓", "userLogin": "✓", "analytics": "✓", "support": "12 Months"}'::jsonb)
+ON CONFLICT (id) DO NOTHING;
+
+-- ── 12. Promo Codes Table ────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS promo_codes (
+  id             VARCHAR(50)  PRIMARY KEY,
+  code           VARCHAR(50)  UNIQUE NOT NULL,
+  discount_type  VARCHAR(20)  NOT NULL,
+  discount_value NUMERIC      NOT NULL,
+  active         BOOLEAN      DEFAULT TRUE,
+  expiry_date    VARCHAR(50)
+);
+
+INSERT INTO promo_codes (id, code, discount_type, discount_value, active, expiry_date)
+VALUES
+  ('promo-001', 'HYDNEW',      'percentage', 15,   true, '2026-12-31'),
+  ('promo-002', 'FESTIVE5000',  'fixed',      5000, true, '2026-10-31')
+ON CONFLICT (id) DO NOTHING;
+
+-- ── 13. Subscriptions Table ──────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS subscriptions (
+  id             VARCHAR(50)  PRIMARY KEY,
+  customer_name  VARCHAR(100) NOT NULL,
+  customer_email VARCHAR(100) NOT NULL,
+  plan_id        VARCHAR(50)  NOT NULL,
+  billing_cycle  VARCHAR(50)  NOT NULL,
+  status         VARCHAR(50)  NOT NULL,
+  start_date     VARCHAR(50)  NOT NULL,
+  trial_end_date VARCHAR(50),
+  promo_code     VARCHAR(50)
+);
+
+INSERT INTO subscriptions (id, customer_name, customer_email, plan_id, billing_cycle, status, start_date, trial_end_date, promo_code)
+VALUES
+  ('sub-001', 'Vision Academy',      'contact@visionacademy.in', 'business',  'one-time', 'active', '2026-05-01', NULL, NULL),
+  ('sub-002', 'NovaMed Diagnostics', 'billing@novamed.com',      'premium',   'one-time', 'active', '2026-05-15', NULL, 'HYDNEW'),
+  ('sub-003', 'Prime Traders',       'info@primetraders.in',     'ecommerce', 'one-time', 'trial',  '2026-06-10', '2026-06-24', NULL)
+ON CONFLICT (id) DO NOTHING;
+
+-- ── 14. Payments Table ───────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS payments (
+  id             VARCHAR(50)  PRIMARY KEY,
+  subscription_id VARCHAR(50) NOT NULL,
+  amount         NUMERIC      NOT NULL,
+  payment_date   VARCHAR(50)  NOT NULL,
+  status         VARCHAR(50)  NOT NULL,
+  payment_method VARCHAR(50)  NOT NULL
+);
+
+INSERT INTO payments (id, subscription_id, amount, payment_date, status, payment_method)
+VALUES
+  ('pay-001', 'sub-001', 35000, '2026-05-01', 'paid', 'Bank Transfer'),
+  ('pay-002', 'sub-002', 68000, '2026-05-16', 'paid', 'UPI'),
+  ('pay-003', 'sub-003', 0,     '2026-06-10', 'paid', 'Free Trial')
+ON CONFLICT (id) DO NOTHING;
+
+-- ── 15. Announcements Table ──────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS announcements (
+  id         VARCHAR(50)  PRIMARY KEY,
+  message    TEXT         NOT NULL,
+  active     BOOLEAN      DEFAULT TRUE,
+  created_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO announcements (id, message, active)
+VALUES
+  ('ann-001', '📢 Special Launch Offer: Get a professional Business website with custom admin panel at 15% Off! Code: HYDNEW', true)
+ON CONFLICT (id) DO NOTHING;
+
+-- ── 16. Invoices Table ───────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS invoices (
+  id              VARCHAR(50)  PRIMARY KEY,
+  subscription_id VARCHAR(50)  NOT NULL,
+  plan_name       VARCHAR(100) NOT NULL,
+  cost            NUMERIC      NOT NULL,
+  add_ons         JSONB        DEFAULT '[]'::jsonb,
+  issue_date      VARCHAR(50)  NOT NULL,
+  status          VARCHAR(50)  NOT NULL
+);
+
+-- ── 17. Proposals Table ──────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS proposals (
+  id             VARCHAR(50)  PRIMARY KEY,
+  customer_email VARCHAR(100) NOT NULL,
+  customer_name  VARCHAR(100) NOT NULL,
+  company_name   VARCHAR(100) NOT NULL,
+  plan_name      VARCHAR(100) NOT NULL,
+  cost           NUMERIC      NOT NULL,
+  content        TEXT         NOT NULL,
+  status         VARCHAR(50)  NOT NULL,
+  created_at     TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ── 18. Agreements Table ─────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS agreements (
+  id             VARCHAR(50)  PRIMARY KEY,
+  customer_email VARCHAR(100) NOT NULL,
+  customer_name  VARCHAR(100) NOT NULL,
+  plan_name      VARCHAR(100) NOT NULL,
+  content        TEXT         NOT NULL,
+  status         VARCHAR(50)  NOT NULL,
+  signed_name    VARCHAR(100),
+  signed_at      VARCHAR(50),
+  created_at     TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ── 19. Projects Table ───────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS projects (
+  id             VARCHAR(50)  PRIMARY KEY,
+  customer_name  VARCHAR(100) NOT NULL,
+  customer_email VARCHAR(100) NOT NULL,
+  company_name   VARCHAR(100) NOT NULL,
+  plan_name      VARCHAR(100) NOT NULL,
+  status         VARCHAR(50)  NOT NULL,
+  progress       INTEGER      DEFAULT 0,
+  assigned_to    VARCHAR(100) DEFAULT 'Unassigned',
+  requirements   TEXT,
+  created_at     TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ── 20. CRM Notifications Table ──────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS crm_notifications (
+  id         VARCHAR(50)  PRIMARY KEY,
+  message    TEXT         NOT NULL,
+  type       VARCHAR(50)  NOT NULL,
+  is_read    BOOLEAN      DEFAULT FALSE,
+  created_at TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ── 21. Clients Table ────────────────────────────────────────────────────
+CREATE TABLE IF NOT EXISTS clients (
+  id           VARCHAR(50)  PRIMARY KEY,
+  name         VARCHAR(100) NOT NULL,
+  company_name VARCHAR(100),
+  email        VARCHAR(100) UNIQUE NOT NULL,
+  phone        VARCHAR(50),
+  address      TEXT,
+  gst_number   VARCHAR(50),
+  tax_details  TEXT,
+  notes        TEXT,
+  status       VARCHAR(80)  DEFAULT 'Lead',
+  created_at   TIMESTAMP    DEFAULT CURRENT_TIMESTAMP,
+  updated_at   TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ── 22. Client Communications Table ──────────────────────────────────────
+CREATE TABLE IF NOT EXISTS client_communications (
+  id           VARCHAR(50)  PRIMARY KEY,
+  client_email VARCHAR(100) NOT NULL,
+  type         VARCHAR(20)  NOT NULL,
+  subject      VARCHAR(200),
+  message      TEXT         NOT NULL,
+  sent_by      VARCHAR(100),
+  sent_at      TIMESTAMP    DEFAULT CURRENT_TIMESTAMP
+);
+
+-- ── 23. Document Templates (HR Gen) ──────────────────────────────────────
 CREATE TABLE IF NOT EXISTS document_templates (
   id       VARCHAR(50)  PRIMARY KEY,
   title    VARCHAR(150) NOT NULL,
