@@ -99,19 +99,16 @@ export default function LoginPage() {
       }}>
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "32px" }}>
-          <div style={{
-            display: "inline-flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: "56px",
-            height: "56px",
-            background: "rgba(15, 98, 254, 0.1)",
-            border: "1px solid rgba(15, 98, 254, 0.3)",
-            borderRadius: "14px",
-            marginBottom: "16px"
-          }}>
-            <span style={{ fontSize: "1.8rem", fontWeight: 800, color: "var(--accent, #0f62fe)" }}>H</span>
-          </div>
+          <img 
+            src="/logo.png" 
+            alt="Nexhify Logo" 
+            style={{ 
+              height: "48px", 
+              width: "auto", 
+              objectFit: "contain",
+              marginBottom: "16px"
+            }} 
+          />
           <h2 style={{ margin: "0 0 8px 0", color: "#ffffff", fontSize: "1.6rem", fontWeight: 700 }}>Welcome Back</h2>
           <p style={{ margin: 0, color: "#a0aec0", fontSize: "0.9rem" }}>Log in to access your CRM admin portal</p>
         </div>
@@ -149,7 +146,7 @@ export default function LoginPage() {
                 disabled={loading}
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                placeholder="admin"
+                placeholder="e.g. username or email"
                 style={{
                   width: "100%",
                   padding: "12px 12px 12px 42px",

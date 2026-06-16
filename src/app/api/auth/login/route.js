@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { findUserByIdentifier } from "@/lib/users";
 import { signJWT } from "@/lib/jwt";
+import { isPostgresConnected, getUserByUsername } from "@/lib/db";
 
 export async function POST(request) {
   try {
@@ -13,7 +14,14 @@ export async function POST(request) {
       );
     }
 
-    const user = findUserByIdentifier(username);
+    if (!isPostgresConnected) {
+      return NextResponse.json(
+        { error: "Database connection failed. Please connect the database first." },
+        { status: 503 }
+      );
+    }
+
+    const user = await getUserByUsername(username);
     if (!user || user.password !== password) {
       return NextResponse.json(
         { error: "Invalid username or password" },

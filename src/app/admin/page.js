@@ -1045,18 +1045,15 @@ export default function AdminDashboard() {
             borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
             paddingBottom: "20px"
           }}>
-            <div style={{
-              width: "36px",
-              height: "36px",
-              borderRadius: "8px",
-              background: "linear-gradient(135deg, #0f62fe, #00d4ff)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontWeight: 800,
-              fontSize: "1.2rem",
-              color: "#fff"
-            }}>H</div>
+            <img 
+              src="/logo.png" 
+              alt="Nexhify Logo" 
+              style={{ 
+                height: "36px", 
+                width: "auto", 
+                objectFit: "contain" 
+              }} 
+            />
             <div>
               <h2 style={{ fontSize: "1.05rem", fontWeight: 700, margin: 0, letterSpacing: "0.5px" }}>Nexhydigital</h2>
               <span style={{ fontSize: "0.75rem", color: "#64748b", fontWeight: 600 }}>CRM Admin Suite</span>

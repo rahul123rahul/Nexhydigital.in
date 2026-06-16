@@ -54,20 +54,6 @@ loadUsers();
 // Default users (used as fallback if file is empty)
 const DEFAULT_USERS = [
   {
-    id: "usr-001",
-    employeeId: "EMP-001",
-    username: "admin",
-    password: "Nexhydigital@123",
-    role: "super_admin",
-    name: "Super Admin",
-    email: "admin@hygenx.in",
-    phone: "+91 98765 00001",
-    department: "Administration",
-    avatar: "SA",
-    redirectTo: "/admin",
-    createdAt: "2026-05-01T00:00:00.000Z",
-  },
-  {
     id: "usr-002",
     employeeId: "EMP-002",
     username: "hrmanager",

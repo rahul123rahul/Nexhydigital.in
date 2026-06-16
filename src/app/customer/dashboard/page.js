@@ -221,9 +221,15 @@ export default function CustomerDashboard() {
         <div>
           {/* Brand header */}
           <div style={{ display: "flex", alignItems: "center", gap: "10px", paddingBottom: "20px", marginBottom: "36px", borderBottom: "1px solid rgba(255, 255, 255, 0.06)" }}>
-            <div style={{ width: "32px", height: "32px", borderRadius: "6px", background: "linear-gradient(135deg, #0f62fe, #00d4ff)", display: "flex", alignItems: "center", justifyContent: "center", fontWeight: 800, color: "#fff", fontSize: "1rem" }}>
-              N
-            </div>
+            <img 
+              src="/logo.png" 
+              alt="Nexhify Logo" 
+              style={{ 
+                height: "32px", 
+                width: "auto", 
+                objectFit: "contain" 
+              }} 
+            />
             <div>
               <h2 style={{ fontSize: "0.95rem", fontWeight: 700, margin: 0 }}>Client Workspace</h2>
               <span style={{ fontSize: "0.72rem", color: "#64748b" }}>Nexhydigital CRM</span>
