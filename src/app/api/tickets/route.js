@@ -16,7 +16,7 @@ export async function GET(request) {
 
     const tickets = await getTickets();
 
-    if (payload.role === "super_admin" || payload.role === "hr_manager" || payload.role === "hr_staff") {
+    if ((payload.role === "super_admin" || payload.role === "admin") || payload.role === "hr_manager" || payload.role === "hr_staff") {
       return NextResponse.json(tickets);
     } else {
       const email = payload.email.toLowerCase();

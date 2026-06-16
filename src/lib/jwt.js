@@ -5,7 +5,7 @@ const SECRET = new TextEncoder().encode(
 );
 
 const ALGORITHM = "HS256";
-const EXPIRY = "8h"; // 8-hour sessions
+const EXPIRY = "1h"; // 1-hour sessions
 
 /**
  * Sign a JWT with the given payload.

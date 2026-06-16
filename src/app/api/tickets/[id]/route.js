@@ -11,7 +11,7 @@ export async function PATCH(request, { params }) {
     }
 
     const payload = await verifyJWT(token);
-    if (!payload || (payload.role !== "super_admin" && payload.role !== "hr_manager" && payload.role !== "hr_staff")) {
+    if (!payload || ((payload.role !== "super_admin" && payload.role !== "admin") && payload.role !== "hr_manager" && payload.role !== "hr_staff")) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 

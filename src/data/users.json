@@ -1,6 +1,20 @@
 {
   "users": [
     {
+      "id": "usr-008",
+      "employeeId": "EMP-008",
+      "username": "admin",
+      "password": "Admin@2026",
+      "role": "admin",
+      "name": "Admin User",
+      "email": "admin@hygenx.in",
+      "phone": "+91 98765 00008",
+      "department": "Administration",
+      "avatar": "AD",
+      "redirectTo": "/admin",
+      "createdAt": "2026-05-01T00:00:00.000Z"
+    },
+    {
       "id": "usr-002",
       "employeeId": "EMP-002",
       "username": "hrmanager",

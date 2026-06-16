@@ -54,6 +54,20 @@ loadUsers();
 // Default users (used as fallback if file is empty)
 const DEFAULT_USERS = [
   {
+    id: "usr-008",
+    employeeId: "EMP-008",
+    username: "admin",
+    password: "Admin@2026",
+    role: "admin",
+    name: "Admin User",
+    email: "admin@hygenx.in",
+    phone: "+91 98765 00008",
+    department: "Administration",
+    avatar: "AD",
+    redirectTo: "/admin",
+    createdAt: "2026-05-01T00:00:00.000Z",
+  },
+  {
     id: "usr-002",
     employeeId: "EMP-002",
     username: "hrmanager",
@@ -116,6 +130,7 @@ const DEFAULT_USERS = [
  */
 export const ROLE_ROUTES = {
   super_admin: "/admin",
+  admin: "/admin",
   hr_manager: "/admin/hr",
   hr_staff: "/admin/hr",
   recruiter: "/admin/hr",
@@ -129,6 +144,7 @@ export const ROLE_ROUTES = {
  */
 export const ROLE_MODULE_ACCESS = {
   super_admin: ["overview","employees","recruitment","attendance","leave","payroll","performance","docgen","helpdesk","compliance","exit"],
+  admin: ["overview","employees","recruitment","attendance","leave","payroll","performance","docgen","helpdesk","compliance","exit"],
   hr_manager: ["overview","employees","recruitment","attendance","leave","payroll","performance","docgen","helpdesk","compliance","exit"],
   hr_staff: ["overview","employees","recruitment","attendance","leave","docgen","helpdesk","compliance","exit"],
   recruiter: ["overview","recruitment","docgen"],
@@ -137,6 +153,7 @@ export const ROLE_MODULE_ACCESS = {
 
 export const ROLE_PERMISSIONS = {
   super_admin: ["/admin"],
+  admin: ["/admin"],
   hr_manager: ["/admin/hr", "/admin/ess"],
   hr_staff: ["/admin/hr", "/admin/ess"],
   recruiter: ["/admin/hr", "/admin/ess"],
@@ -149,6 +166,7 @@ export const ROLE_PERMISSIONS = {
 export function getRedirectUrlForRole(role) {
   const routeMap = {
     super_admin: "/admin",
+    admin: "/admin",
     hr_manager: "/admin/hr",
     hr_staff: "/admin/hr",
     recruiter: "/admin/hr",

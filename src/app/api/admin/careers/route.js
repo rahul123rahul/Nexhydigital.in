@@ -6,7 +6,7 @@ async function checkAdmin(request) {
   const token = request.cookies.get("token")?.value;
   if (!token) return false;
   const payload = await verifyJWT(token);
-  return payload && payload.role === "super_admin";
+  return payload && (payload.role === "super_admin" || payload.role === "admin");
 }
 
 export async function GET() {

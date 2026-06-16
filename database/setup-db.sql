@@ -25,10 +25,11 @@ CREATE TABLE IF NOT EXISTS users (
 
 INSERT INTO users (id, username, password, role, name, email, department, avatar)
 VALUES
-  ('usr-002', 'hrmanager',  'HRManager@2026', 'hr_manager',  'Priya Sharma',  'priya.sharma@hygenx.in','Human Resources',    'PS'),
-  ('usr-003', 'hrstaff',    'HRStaff@2026',   'hr_staff',    'Ravi Kumar',    'ravi.kumar@hygenx.in',  'Human Resources',    'RK'),
-  ('usr-004', 'recruiter',  'Recruit@2026',   'recruiter',   'Anita Patel',   'anita.patel@hygenx.in', 'Talent Acquisition', 'AP'),
-  ('usr-005', 'employee',   'Employee@2026',  'employee',    'Rohit Verma',   'rohit.verma@hygenx.in', 'Engineering',        'RV')
+  ('usr-008', 'admin',      'Admin@2026',           'admin',       'Admin User',    'admin@nexhydigital.in',       'Administration',     'AD'),
+  ('usr-002', 'hrmanager',  'HRManager@2026', 'hr_manager',  'Priya Sharma',  'priya.sharma@nexhydigital.in','Human Resources',    'PS'),
+  ('usr-003', 'hrstaff',    'HRStaff@2026',   'hr_staff',    'Ravi Kumar',    'ravi.kumar@nexhydigital.in',  'Human Resources',    'RK'),
+  ('usr-004', 'recruiter',  'Recruit@2026',   'recruiter',   'Anita Patel',   'anita.patel@nexhydigital.in', 'Talent Acquisition', 'AP'),
+  ('usr-005', 'employee',   'Employee@2026',  'employee',    'Rohit Verma',   'rohit.verma@nexhydigital.in', 'Engineering',        'RV')
 ON CONFLICT (id) DO NOTHING;
 
 -- ── 2. Careers (Job Listings) ─────────────────────────────────────────────

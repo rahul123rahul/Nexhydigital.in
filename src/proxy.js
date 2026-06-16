@@ -17,7 +17,7 @@ export async function proxy(request) {
     try {
       const { payload } = await jwtVerify(token, SECRET);
       // Enforce admin role check (must be super_admin to manage CRM/Careers)
-      if (payload.role !== "super_admin") {
+      if (payload.role !== "super_admin" && payload.role !== "admin") {
         return NextResponse.redirect(
           new URL("/login?error=unauthorized", request.url)
         );
@@ -36,7 +36,7 @@ export async function proxy(request) {
     }
     try {
       const { payload } = await jwtVerify(token, SECRET);
-      if (payload.role !== "client" && payload.role !== "super_admin") {
+      if (payload.role !== "client" && payload.role !== "super_admin" && payload.role !== "admin") {
         return NextResponse.redirect(
           new URL("/login?error=unauthorized", request.url)
         );
@@ -53,7 +53,7 @@ export async function proxy(request) {
     if (token) {
       try {
         const { payload } = await jwtVerify(token, SECRET);
-        if (payload.role === "super_admin") {
+        if (payload.role === "super_admin" || payload.role === "admin") {
           return NextResponse.redirect(new URL("/admin", request.url));
         } else if (payload.role === "client") {
           return NextResponse.redirect(new URL("/customer/dashboard", request.url));

@@ -205,7 +205,7 @@ export default function AdminDashboard() {
         throw new Error("Unauthorized");
       })
       .then((data) => {
-        if (data.ok && data.user.role === "super_admin") {
+        if (data.ok && (data.user.role === "super_admin" || data.user.role === "admin")) {
           setAdminUser(data.user);
           fetchDashboardData();
         } else {

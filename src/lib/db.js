@@ -146,6 +146,7 @@ if (isPostgresConnected) {
     if (parseInt(userCount[0].count) === 0) {
       await pool.query(`
         INSERT INTO users (id, username, password, role, name, email, department, avatar) VALUES
+        ('usr-008', 'admin', 'Admin@2026', 'admin', 'Admin User', 'admin@hygenx.in', 'Administration', 'AD'),
         ('usr-002', 'hrmanager', 'HRManager@2026', 'hr_manager', 'Priya Sharma', 'priya.sharma@hygenx.in', 'Human Resources', 'PS'),
         ('usr-003', 'hrstaff', 'HRStaff@2026', 'hr_staff', 'Ravi Kumar', 'ravi.kumar@hygenx.in', 'Human Resources', 'RK'),
         ('usr-004', 'recruiter', 'Recruit@2026', 'recruiter', 'Anita Patel', 'anita.patel@hygenx.in', 'Talent Acquisition', 'AP'),

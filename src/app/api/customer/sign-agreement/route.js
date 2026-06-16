@@ -16,7 +16,7 @@ export async function POST(request) {
     }
 
     const payload = await verifyJWT(token);
-    if (!payload || (payload.role !== "client" && payload.role !== "super_admin")) {
+    if (!payload || (payload.role !== "client" && (payload.role !== "super_admin" && payload.role !== "admin"))) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
