@@ -877,6 +877,49 @@ export async function getUserByUsername(username) {
   return null;
 }
 
+export async function getUserById(id) {
+  if (isPostgresConnected && pool) {
+    const { rows } = await pool.query(
+      "SELECT * FROM users WHERE id = $1",
+      [id]
+    );
+    return rows[0] || null;
+  } else {
+    const db = readJSON("users.json");
+    const list = Array.isArray(db) ? db : (db.users || []);
+    return list.find(u => u.id === id) || null;
+  }
+}
+
+export async function updateUserPassword(id, newPassword) {
+  if (isPostgresConnected && pool) {
+    await pool.query(
+      "UPDATE users SET password = $1 WHERE id = $2",
+      [newPassword, id]
+    );
+    return { ok: true };
+  } else {
+    const db = readJSON("users.json");
+    if (Array.isArray(db)) {
+      const idx = db.findIndex(u => u.id === id);
+      if (idx !== -1) {
+        db[idx].password = newPassword;
+        writeJSON("users.json", db);
+      }
+    } else {
+      const list = db.users || [];
+      const idx = list.findIndex(u => u.id === id);
+      if (idx !== -1) {
+        list[idx].password = newPassword;
+        db.users = list;
+        writeJSON("users.json", db);
+      }
+    }
+    return { ok: true };
+  }
+}
+
+
 export async function getEmployees() {
   if (isPostgresConnected) {
     const { rows } = await pool.query("SELECT * FROM employees ORDER BY id ASC");

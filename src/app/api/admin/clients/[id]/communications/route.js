@@ -30,7 +30,7 @@ export async function POST(request, { params }) {
     const token = request.cookies.get("token")?.value;
     if (!token) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     const payload = await verifyJWT(token);
-    if (!payload || payload.role !== "super_admin")
+    if (!payload || (payload.role !== "super_admin" && payload.role !== "admin"))
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
     const body = await request.json();

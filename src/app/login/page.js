@@ -25,8 +25,14 @@ export default function LoginPage() {
         body: JSON.stringify({ username, password }),
       });
 
-      const data = await res.json();
-      if (res.ok && data.ok) {
+      let data;
+      try {
+        data = await res.json();
+      } catch (jsonErr) {
+        throw new Error("Invalid response from server. Please try again.");
+      }
+
+      if (res.ok && data && data.ok) {
         if (data.user?.role === "client") {
           router.push("/customer/dashboard");
         } else {
@@ -34,11 +40,12 @@ export default function LoginPage() {
         }
         router.refresh();
       } else {
-        setError(data.error || "Invalid username or password");
+        setError(data?.error || "Invalid username or password");
         setLoading(false);
       }
     } catch (err) {
-      setError("An error occurred. Please try again.");
+      console.error("Login client error:", err);
+      setError(err.message || "An error occurred. Please try again.");
       setLoading(false);
     }
   };
@@ -53,12 +60,13 @@ export default function LoginPage() {
       padding: "20px",
       fontFamily: "system-ui, sans-serif",
     }}>
-      <style dangerouslySetInnerHTML={{__html: `
+      <style dangerouslySetInnerHTML={{
+        __html: `
         @keyframes loginSpin {
           to { transform: rotate(360deg); }
         }
       `}} />
-      
+
       {/* Background ambient glow */}
       <div style={{
         position: "absolute",
@@ -99,18 +107,21 @@ export default function LoginPage() {
       }}>
         {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "32px" }}>
-          <img 
-            src="/logo.png" 
-            alt="Nexhify Logo" 
-            style={{ 
-              height: "48px", 
-              width: "auto", 
+          <img
+            src="/logo.png"
+            alt="Nexhify Logo"
+            style={{
+              height: "48px",
+              width: "auto",
               objectFit: "contain",
               marginBottom: "16px"
-            }} 
+            }}
           />
           <h2 style={{ margin: "0 0 8px 0", color: "#ffffff", fontSize: "1.6rem", fontWeight: 700 }}>Welcome Back</h2>
-          <p style={{ margin: 0, color: "#a0aec0", fontSize: "0.9rem" }}>Log in to access your CRM admin portal</p>
+          <p style={{ margin: 0, color: "#a0aec0", fontSize: "0.9rem", lineHeight: "1.5" }}>
+            Log in to access your portal.<br />
+            Enter your credentials to securely manage your workspace.
+          </p>
         </div>
 
         {/* Error notification */}
