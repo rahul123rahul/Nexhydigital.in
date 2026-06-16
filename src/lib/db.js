@@ -11,6 +11,10 @@ const dbConfig = {
   database: process.env.PGDATABASE || "hygenx",
 };
 
+const useSSL = process.env.PGSSL === "true" || 
+               (process.env.DATABASE_URL && (process.env.DATABASE_URL.includes("neon") || process.env.DATABASE_URL.includes("supabase") || process.env.DATABASE_URL.includes("aws") || process.env.DATABASE_URL.includes("aiven")));
+const sslOption = useSSL ? { rejectUnauthorized: false } : undefined;
+
 let pool = null;
 export let isPostgresConnected = false;
 
@@ -72,8 +76,12 @@ const isBuildPhase = process.env.NEXT_PHASE === "phase-production-build";
 
 if (!isBuildPhase) {
   try {
+    const poolConfig = process.env.DATABASE_URL
+      ? { connectionString: process.env.DATABASE_URL, ssl: sslOption }
+      : { ...dbConfig, ssl: sslOption };
+
     pool = new Pool({
-      ...dbConfig,
+      ...poolConfig,
       connectionTimeoutMillis: 3000,
     });
     
