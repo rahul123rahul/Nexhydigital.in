@@ -4,6 +4,7 @@ import "@/components/site-header-footer.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ThemeToggle } from "@/components/theme-toggle";
+import Script from "next/script";
 
 export const metadata = {
   title: "Nexhydigital | Enterprise IT Solutions & Custom Software Development",
@@ -111,6 +112,28 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body suppressHydrationWarning>
+        {/* CookieYes script loaded before interactive */}
+        <Script
+          id="cookieyes"
+          type="text/javascript"
+          src="https://cdn-cookieyes.com/client_data/b8e6eb9657d3534ff32afa33/script.js"
+          strategy="beforeInteractive"
+        />
+
+        {/* Google Analytics (gtag.js) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-0BXWZF31F0"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-0BXWZF31F0');
+          `}
+        </Script>
+
         <SiteHeader />
         {children}
         <ThemeToggle floating={true} />
