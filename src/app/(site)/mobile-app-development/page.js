@@ -1,8 +1,22 @@
 import { ServiceLandingPage } from "@/components/service-landing-page";
 
 export const metadata = {
-  title: "Mobile App Development Company in Hyderabad | Android & iOS Apps",
-  description: "Turn your ideas into premium mobile apps. Nexhy Digital builds scalable Android and iOS applications using React Native and Flutter for startups & enterprises.",
+  title: "Mobile App Development Company in Hyderabad | Android & iOS Apps — Nexhydigital",
+  description: "Turn your ideas into premium mobile apps. Nexhydigital builds scalable Android and iOS applications using React Native and Flutter for startups & enterprises in Hyderabad.",
+  keywords: [
+    "Mobile App Development Hyderabad",
+    "Android App Developers Hyderabad",
+    "iOS App Development",
+    "React Native Flutter Apps",
+    "Mobile App Company India"
+  ],
+  openGraph: {
+    title: "Mobile App Development Company in Hyderabad | Android & iOS Apps — Nexhydigital",
+    description: "Build scalable cross-platform mobile apps for Android and iOS with native speed and seamless UI design.",
+    url: "https://nexhydigital.in/mobile-app-development",
+    siteName: "Nexhydigital",
+    type: "website",
+  },
   alternates: {
     canonical: "https://nexhydigital.in/mobile-app-development",
   },

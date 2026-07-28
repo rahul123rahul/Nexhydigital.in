@@ -272,7 +272,7 @@ export function ServiceLandingPage({
               <Link href={`/contact?service=${encodeURIComponent(serviceName)}`} className="button button-glow">
                 Request Quote For {serviceName}
               </Link>
-              <Link href="/contact" className="button button-glass">
+              <Link href={`/contact?service=${encodeURIComponent(serviceName)}`} className="button button-glass">
                 Ask a Question →
               </Link>
             </div>

@@ -536,8 +536,14 @@ select {
   }
 }
 
-
-
+.contact-redirect-link {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.contact-redirect-link:hover {
+  color: var(--accent) !important;
+}
 .hero {
   background: linear-gradient(135deg, #eef4ff 0%, #ffffff 54%, #f7faff 100%);
 }
@@ -5758,7 +5764,7 @@ select {
     grid-template-columns: 1fr;
     padding-top: 100px;
   }
-  .lp-hero-visual { display: none; }
+  .lp-hero-visual { display: flex; margin-top: 20px; width: 100%; justify-content: center; }
   .lp-hero-stats-inner { grid-template-columns: repeat(2, 1fr); }
   .lp-hero-stat:nth-child(2) { border-right: none; }
   .lp-hero-stat:nth-child(3) { border-right: 1px solid rgba(255,255,255,0.08); }

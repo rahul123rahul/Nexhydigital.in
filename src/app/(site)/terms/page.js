@@ -107,8 +107,13 @@ export default function TermsPage() {
                   color: "#cbd5e1"
                 }}>
                   <p style={{ margin: "0 0 8px 0" }}><strong>🏢 Registered Office:</strong> Nexhydigital Technologies Pvt Ltd, Hitech City, Hyderabad, 500081, India</p>
-                   <p style={{ margin: "0 0 8px 0" }}><strong>✉ Legal Support:</strong> <a href="mailto:legal@nexhydigital.in" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>legal@nexhydigital.in</a></p>
-                  <p style={{ margin: 0 }}><strong>📱 Corporate Helpdesk:</strong> +91 9603230138</p>
+                   <p style={{ margin: "0 0 8px 0" }}><strong>✉ Legal Support:</strong> <a href="mailto:nexhydigital@gmail.com" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>nexhydigital@gmail.com</a></p>
+                  <p style={{ margin: 0 }}>
+                    <strong>📱 Corporate Helpdesk:</strong>{" "}
+                    <a href="tel:+919603230138" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>+91 9603230138</a>,{" "}
+                    <a href="tel:+919121391173" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>+91 91213 91173</a>,{" "}
+                    <a href="tel:+919000180485" style={{ color: "var(--accent)", textDecoration: "none", fontWeight: 600 }}>+91 90001 80485</a>
+                  </p>
                 </div>
               </div>
 

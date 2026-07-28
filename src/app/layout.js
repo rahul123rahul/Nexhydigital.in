@@ -4,19 +4,39 @@ import "@/components/site-header-footer.css";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { SessionTracker } from "@/components/session-tracker";
 import Script from "next/script";
 
 export const metadata = {
-  title: "Nexhydigital | Enterprise IT Solutions & Custom Software Development",
+  metadataBase: new URL("https://nexhydigital.in"),
+  title: {
+    default: "Nexhydigital | Enterprise IT Solutions & Custom Software Development Hyderabad",
+    template: "%s | Nexhydigital"
+  },
   description:
-    "Nexhydigital delivers enterprise websites, ERP systems, education portals, startup MVPs, and long-term IT maintenance from Hyderabad. Transform your digital infrastructure today.",
-  keywords: ["Enterprise IT", "ERP Systems", "Custom Web Development", "Mobile Apps", "Hyderabad IT Company", "School Management Software", "Digital Transformation", "IT Consulting"],
-  authors: [{ name: "Nexhydigital" }],
+    "Nexhydigital is Hyderabad's premier IT & custom software company. We deliver enterprise ERP systems, school management software, college portals, custom web & mobile apps, and 24/7 IT maintenance.",
+  keywords: [
+    "Nexhydigital",
+    "Nexhy Digital",
+    "Hyderabad IT Company",
+    "Custom Web Development Hyderabad",
+    "ERP Software Development Hyderabad",
+    "School Management Software",
+    "College Portal Development",
+    "Online Exam Engine",
+    "Mobile App Developers Hyderabad",
+    "E-Commerce Web Development",
+    "Website Maintenance Support",
+    "Lathika Polyclinic",
+    "AVNIET College Portal",
+    "CRT Exam Portal"
+  ],
+  authors: [{ name: "Nexhydigital", url: "https://nexhydigital.in" }],
   creator: "Nexhydigital",
   publisher: "Nexhydigital",
   openGraph: {
-    title: "Nexhydigital | Enterprise IT Solutions",
-    description: "Move from idea to execution with a structured technology partner based in Hyderabad.",
+    title: "Nexhydigital | Enterprise IT Solutions & Software Development",
+    description: "Architecting high-performance digital ecosystems, ERP systems, school platforms, and custom apps from Hyderabad.",
     url: "https://nexhydigital.in",
     siteName: "Nexhydigital",
     images: [
@@ -33,12 +53,19 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Nexhydigital | Enterprise IT Solutions",
-    description: "Move from idea to execution with a structured technology partner based in Hyderabad.",
+    description: "Architecting high-performance digital ecosystems, ERP systems, school platforms, and custom apps from Hyderabad.",
     images: ["/logo.png"],
   },
   robots: {
     index: true,
     follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
   icons: {
     icon: "/favicon.ico",
@@ -53,12 +80,26 @@ export const metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
-  "name": "Nexhy Digital",
+  "name": "Nexhydigital",
   "url": "https://nexhydigital.in",
   "logo": "https://nexhydigital.in/logo.png",
   "sameAs": [
+    "https://www.linkedin.com/in/nexhy-digital-191093424/",
+    "https://www.instagram.com/nexhydigital/?hl=en",
     "https://github.com/rahul123rahul/Nexhydigital.in"
   ]
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "Nexhydigital",
+  "url": "https://nexhydigital.in",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://nexhydigital.in/services?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
 };
 
 const localBusinessSchema = {
@@ -68,8 +109,8 @@ const localBusinessSchema = {
   "url": "https://nexhydigital.in",
   "logo": "https://nexhydigital.in/logo.png",
   "image": "https://nexhydigital.in/logo.png",
-  "telephone": "+91 9603230138",
-  "email": "hello@nexhydigital.in",
+  "telephone": "+91 9603230138, +91 91213 91173, +91 90001 80485",
+  "email": "nexhydigital@gmail.com",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "Hitech City",
@@ -108,6 +149,10 @@ export default function RootLayout({ children }) {
         />
         <script
           type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+        <script
+          type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
       </head>
@@ -122,7 +167,7 @@ export default function RootLayout({ children }) {
 
         {/* Google Analytics (gtag.js) */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-0BXWZF31F0"
+          src="https://www.googletagmanager.com/gtag/js?id=G-WSLPFWQCYN"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -130,10 +175,11 @@ export default function RootLayout({ children }) {
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-0BXWZF31F0');
+            gtag('config', 'G-WSLPFWQCYN');
           `}
         </Script>
 
+        <SessionTracker />
         <SiteHeader />
         {children}
         <ThemeToggle floating={true} />

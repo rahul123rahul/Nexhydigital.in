@@ -17,46 +17,121 @@ import {
   trustPartners,
 } from "@/data/site-data";
 
-/* ─── Floating particle background ─── */
+/* ─── Antigravity-Style Dynamic Parallax Particle Scroll Background ─── */
 function ParticleBg() {
   const canvasRef = useRef(null);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    let w = (canvas.width = canvas.offsetWidth);
-    let h = (canvas.height = canvas.offsetHeight);
-    const particles = Array.from({ length: 55 }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 1.6 + 0.4,
-      dx: (Math.random() - 0.5) * 0.35,
-      dy: (Math.random() - 0.5) * 0.35,
-      o: Math.random() * 0.5 + 0.12,
-    }));
+    const ctx = canvas.getContext("2d", { alpha: true });
+
+    let w = (canvas.width = canvas.parentElement?.offsetWidth || window.innerWidth);
+    let h = (canvas.height = canvas.parentElement?.offsetHeight || window.innerHeight);
+
+    // Create particles with depth (z-layers) for 3D parallax scroll effect
+    const count = 75;
+    const particles = Array.from({ length: count }, () => {
+      const depth = Math.random() * 1.8 + 0.4;
+      return {
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: Math.random() * 1.4 + 0.6,
+        dx: (Math.random() - 0.5) * 0.35 * depth,
+        dy: (Math.random() - 0.5) * 0.35 * depth,
+        depth: depth,
+        o: (Math.random() * 0.4 + 0.15) * Math.min(1, depth),
+      };
+    });
+
+    let currentScrollY = 0;
+    let targetScrollY = 0;
+
+    const handleScroll = () => {
+      targetScrollY = window.scrollY || window.pageYOffset;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
     let raf;
     const draw = () => {
       ctx.clearRect(0, 0, w, h);
+
+      // Smooth scroll lerp for 60fps parallax effect
+      currentScrollY += (targetScrollY - currentScrollY) * 0.1;
+
       particles.forEach((p) => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(111,168,255,${p.o})`;
-        ctx.fill();
+        // Natural ambient drift
         p.x += p.dx;
         p.y += p.dy;
-        if (p.x < 0 || p.x > w) p.dx *= -1;
-        if (p.y < 0 || p.y > h) p.dy *= -1;
+
+        // Wrap around boundaries
+        if (p.x < 0) p.x = w;
+        if (p.x > w) p.x = 0;
+        if (p.y < 0) p.y = h;
+        if (p.y > h) p.y = 0;
+
+        // Parallax vertical movement based on scroll and depth
+        const drawY = (p.y - currentScrollY * p.depth * 0.4) % h;
+        const adjustedY = drawY < 0 ? drawY + h : drawY;
+
+        // Render particle with soft neon glow
+        ctx.beginPath();
+        ctx.arc(p.x, adjustedY, p.r * (0.8 + p.depth * 0.3), 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(111, 168, 255, ${p.o})`;
+        ctx.shadowColor = "#38bdf8";
+        ctx.shadowBlur = p.depth > 1.2 ? 6 : 0;
+        ctx.fill();
       });
+
+      // Draw constellation connections between nearby particles
+      ctx.lineWidth = 0.5;
+      for (let i = 0; i < particles.length; i++) {
+        const p1 = particles[i];
+        const y1 = (p1.y - currentScrollY * p1.depth * 0.4) % h;
+        const adjY1 = y1 < 0 ? y1 + h : y1;
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const p2 = particles[j];
+          const y2 = (p2.y - currentScrollY * p2.depth * 0.4) % h;
+          const adjY2 = y2 < 0 ? y2 + h : y2;
+
+          const dx = p1.x - p2.x;
+          const dy = adjY1 - adjY2;
+          const distSq = dx * dx + dy * dy;
+
+          if (distSq < 4900) {
+            const dist = Math.sqrt(distSq);
+            ctx.beginPath();
+            ctx.moveTo(p1.x, adjY1);
+            ctx.lineTo(p2.x, adjY2);
+            ctx.strokeStyle = `rgba(56, 189, 248, ${0.22 * (1 - dist / 70)})`;
+            ctx.stroke();
+          }
+        }
+      }
+
       raf = requestAnimationFrame(draw);
     };
+
     draw();
+
     const onResize = () => {
-      w = canvas.width = canvas.offsetWidth;
-      h = canvas.height = canvas.offsetHeight;
+      if (!canvas.parentElement) return;
+      w = canvas.width = canvas.parentElement.offsetWidth;
+      h = canvas.height = canvas.parentElement.offsetHeight;
     };
+
     window.addEventListener("resize", onResize);
-    return () => { cancelAnimationFrame(raf); window.removeEventListener("resize", onResize); };
+
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", onResize);
+    };
   }, []);
+
   return <canvas ref={canvasRef} className="lp-particle-canvas" aria-hidden="true" />;
 }
 
@@ -307,30 +382,30 @@ export default function HomePage() {
             <motion.div className="lp-hero-content" style={{ translateZ: "50px" }}>
               <div className="lp-hero-pill">
                 <span className="lp-hero-pill-dot" />
-                🚀 Hyderabad-Based Enterprise IT Partner
+                ⚡ HYDERABAD'S PREMIER ENTERPRISE IT & SOFTWARE PARTNER
               </div>
               <h1 className="lp-hero-h1">
-                We Build Digital
-                <span className="lp-gradient-text"> Ecosystems</span>
+                Architecting High-Impact
+                <span className="lp-gradient-text"> Digital Ecosystems</span>
                 <br />
-                That Drive Growth
+                & Custom Software
               </h1>
               <p className="lp-hero-lead">
-                Nexhydigital delivers world-class ERP systems, school management platforms, mobile apps,
-                and custom web solutions — engineered for reliability, built for scale.
+                <strong style={{ color: "#ffffff", fontWeight: 700 }}>Nexhydigital</strong> transforms ambitious business goals into high-performance enterprise ERPs, school management portals, mobile apps, and custom web applications — engineered for reliability, built to scale.
               </p>
               <div className="lp-hero-actions">
                 <Link className="button button-glow lp-hero-btn-primary" href="/services">
-                  <span>Explore Solutions</span>
+                  <span>Explore Our Services</span>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </Link>
-                <Link className="button button-glass" href="/contact">
-                  💬 Free Consultation
+                <Link className="button button-glass" href="/contact" style={{ display: "inline-flex", alignItems: "center", gap: "8px" }}>
+                  <span style={{ width: "8px", height: "8px", borderRadius: "50%", background: "#10b981", boxShadow: "0 0 10px #10b981" }} />
+                  <span>Talk to Engineers</span>
                 </Link>
               </div>
               <div className="lp-hero-trust">
-                <span className="lp-hero-trust-label">Trusted by:</span>
-                {clientLogos.slice(0, 4).map((l) => (
+                <span className="lp-hero-trust-label">Trusted by Leading Clients:</span>
+                {clientLogos.slice(0, 5).map((l) => (
                   <span key={l} className="lp-hero-trust-tag">{l}</span>
                 ))}
               </div>
@@ -529,16 +604,21 @@ export default function HomePage() {
           <div className="lp-bento-grid">
             {solutions.map((item, i) => (
               <Reveal delay={i * 0.07} key={item.title}>
-                <motion.article 
-                  className={`lp-bento-card${i === 0 || i === 3 ? " lp-bento-wide" : ""}`}
-                  whileHover={{ y: -8, scale: 1.02 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <div className="lp-bento-icon">{item.icon}</div>
-                  <h3 className="lp-bento-title">{item.title}</h3>
-                  <p className="lp-bento-desc">{item.description}</p>
-                  <div className="lp-bento-arrow">→</div>
-                </motion.article>
+                <Link href={`/contact?service=${encodeURIComponent(item.title)}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
+                  <motion.article 
+                    className={`lp-bento-card${i === 0 || i === 3 ? " lp-bento-wide" : ""}`}
+                    whileHover={{ y: -8, scale: 1.02 }}
+                    transition={{ type: "spring", stiffness: 300 }}
+                  >
+                    <div className="lp-bento-icon">{item.icon}</div>
+                    <h3 className="lp-bento-title">{item.title}</h3>
+                    <p className="lp-bento-desc">{item.description}</p>
+                    <div className="lp-bento-arrow" style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "0.9rem", fontWeight: 700, color: "var(--accent)" }}>
+                      <span>Get a Quote</span>
+                      <span>→</span>
+                    </div>
+                  </motion.article>
+                </Link>
               </Reveal>
             ))}
           </div>

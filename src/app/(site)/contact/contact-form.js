@@ -17,9 +17,42 @@ function ContactFormContent() {
 
   const searchParams = useSearchParams();
   const plan = searchParams ? searchParams.get("plan") : null;
+  const serviceParam = searchParams ? searchParams.get("service") : null;
 
   useEffect(() => {
-    if (plan) {
+    if (serviceParam) {
+      const decodedService = decodeURIComponent(serviceParam);
+      let matchedOption = "Other";
+      const s = decodedService.toLowerCase();
+      
+      if (s.includes("erp")) {
+        if (s.includes("school") || s.includes("education")) {
+          matchedOption = "Educational Websites & Portals";
+        } else {
+          matchedOption = "ERP Software";
+        }
+      } else if (s.includes("app") || s.includes("mobile") || s.includes("ios") || s.includes("android")) {
+        matchedOption = "Custom App Development";
+      } else if (s.includes("school") || s.includes("education") || s.includes("college") || s.includes("portal")) {
+        matchedOption = "Educational Websites & Portals";
+      } else if (s.includes("e-commerce") || s.includes("ecommerce") || s.includes("store")) {
+        matchedOption = "E-Commerce Development";
+      } else if (s.includes("crm")) {
+        matchedOption = "Custom CRM Development";
+      } else if (s.includes("maintain") || s.includes("support")) {
+        matchedOption = "IT Maintenance & Support";
+      } else if (s.includes("web") || s.includes("site")) {
+        matchedOption = "Custom Web Development";
+      } else {
+        matchedOption = "Other";
+      }
+
+      setForm((prev) => ({
+        ...prev,
+        service: matchedOption,
+        message: prev.message || `I am interested in getting a free quote for: ${decodedService}.`
+      }));
+    } else if (plan) {
       const planName = plan.charAt(0).toUpperCase() + plan.slice(1);
       let budgetVal = "";
       let serviceVal = "Custom Web Development";
@@ -33,7 +66,7 @@ function ContactFormContent() {
         budgetVal = "90k";
       } else if (plan === "ecommerce") {
         budgetVal = "1L - 3L";
-        serviceVal = "Custom App Development";
+        serviceVal = "E-Commerce Development";
         detailsVal = `I am interested in the E-Commerce Website plan.`;
       }
 
@@ -44,7 +77,7 @@ function ContactFormContent() {
         message: detailsVal,
       }));
     }
-  }, [plan]);
+  }, [plan, serviceParam]);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -187,12 +220,14 @@ function ContactFormContent() {
           <label htmlFor="service" style={{ fontSize: "0.85rem", fontWeight: 600, color: "var(--primary)" }}>Service Required *</label>
           <select suppressHydrationWarning id="service" name="service" required value={form.service} onChange={handleChange} style={{ padding: "12px", borderRadius: "8px", border: "1px solid var(--line)", background: "var(--surface-alt)", color: "var(--primary)", cursor: "pointer", fontFamily: "inherit" }}>
             <option value="" disabled>Select a service</option>
-            <option value="Custom App Development">Custom App Development</option>
             <option value="Custom Web Development">Custom Web Development</option>
-            <option value="ERP Software">ERP Software</option>
-            <option value="Educational Websites & Portals">Educational Websites & Portals</option>
+            <option value="Custom App Development">Custom App Development (Mobile)</option>
+            <option value="ERP Software">ERP Software Development</option>
+            <option value="Educational Websites & Portals">Educational Websites & Portals (School ERP)</option>
+            <option value="E-Commerce Development">E-Commerce Development</option>
+            <option value="Custom CRM Development">Custom CRM Development</option>
             <option value="IT Maintenance & Support">IT Maintenance & Support</option>
-            <option value="Other">Other</option>
+            <option value="Other">Other Custom Solution</option>
           </select>
         </div>
         <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
