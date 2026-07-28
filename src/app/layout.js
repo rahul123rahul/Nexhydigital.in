@@ -143,6 +143,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
+        {/* CookieYes Banner Verification */}
+        <script
+          id="cookieyes"
+          type="text/javascript"
+          src="https://cdn-cookieyes.com/client_data/b8e6eb9657d3534ff32afa33/script.js"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
@@ -157,13 +163,6 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body suppressHydrationWarning>
-        {/* CookieYes script loaded before interactive */}
-        <Script
-          id="cookieyes"
-          type="text/javascript"
-          src="https://cdn-cookieyes.com/client_data/b8e6eb9657d3534ff32afa33/script.js"
-          strategy="beforeInteractive"
-        />
 
         {/* Google Analytics (gtag.js) */}
         <Script
