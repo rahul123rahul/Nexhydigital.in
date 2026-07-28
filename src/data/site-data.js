@@ -80,11 +80,51 @@ export const caseStudies = [
   { title: "Custom Billing App — Hyderabad", before: "Manual invoicing, Excel sheets, payment tracking chaos", after: "Custom billing web app with GST, receipts, and client dashboard", metrics: ["100% paperless billing", "GST-ready reports", "30% faster collections"] },
 ];
 
-// ─── Testimonials ──────────────────────────────────────────────────────────────
 export const landingProjectScreens = [
-  { title: "School ERP Dashboard", description: "Attendance, admissions, fees, notices, and student records in one operational view." },
-  { title: "Business Billing Workspace", description: "GST-ready invoices, payment tracking, receipts, and customer reporting." },
-  { title: "Service Operations Portal", description: "A responsive dashboard for requests, workflows, analytics, and team coordination." },
+  {
+    id: "lathika-clinic",
+    title: "Lathika Polyclinic",
+    category: "Healthcare & Polyclinic Portal",
+    url: "lathika.in",
+    href: "https://lathika.in",
+    image: "/projects/lathika-clinic.png",
+    description: "Comprehensive Healthcare for Your Entire Family — Polyclinics, Diagnostics, Pharmacy & Day Care. Features online doctor appointment booking, specialist listings, and patient membership management.",
+    tags: ["Polyclinic Portal", "Appointment Booking", "Diagnostics", "Next.js"],
+    status: "Active Project"
+  },
+  {
+    id: "avniet-college",
+    title: "AVN Institute of Engineering & Technology",
+    category: "Autonomous College Portal",
+    url: "avniet.ac.in",
+    href: "https://avniet.ac.in",
+    image: "/projects/avniet-college.png",
+    description: "Autonomous Institute Affiliated to JNTU Hyderabad (EAPCET/ECET: AVNI, PGECET: AVNI). Features faculty/student/parent portal, department portals, placement cell, and academic disclosures.",
+    tags: ["JNTU Affiliated College", "Academic Portal", "Placement Cell", "Admissions"],
+    status: "Active Project"
+  },
+  {
+    id: "crt-exam",
+    title: "CRT Exam Portal (QuizMaster)",
+    category: "EdTech & Online Test Engine",
+    url: "crtexam.in",
+    href: "http://rahul02100.pythonanywhere.com",
+    image: "/projects/crt-exam-portal.png",
+    description: "Master Your Skills. Unlock Your Potential. Enterprise-grade assessment platform for Campus Recruitment Training, online mock exams, coding challenges, and certification tracking.",
+    tags: ["Campus Recruitment", "Assessment Engine", "Coding Challenges", "Python / Django"],
+    status: "Ongoing Project"
+  },
+  {
+    id: "vision-academy",
+    title: "Vision Academy School ERP",
+    category: "K-12 Education & ERP",
+    url: "visionacademy.in",
+    href: "https://visionacademy.in",
+    image: "/projects/vision-school-erp.png",
+    description: "Integrated school ERP managing 1,200+ students. Features automated fee payments, digital attendance, exam marks, and instant SMS notice dispatches.",
+    tags: ["School ERP", "Fee Automation", "Attendance Tracker", "React"],
+    status: "Active Project"
+  }
 ];
 
 export const testimonials = [

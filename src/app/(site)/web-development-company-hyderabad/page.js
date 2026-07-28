@@ -1,8 +1,22 @@
 import { ServiceLandingPage } from "@/components/service-landing-page";
 
 export const metadata = {
-  title: "Custom Web Development Company in Hyderabad | Nexhy Digital",
-  description: "Enterprise-grade website development in Hyderabad. We build responsive, fast-loading, and SEO-optimized corporate websites and custom portals.",
+  title: "Custom Web Development Company in Hyderabad | Nexhydigital",
+  description: "Enterprise-grade website development in Hyderabad. Nexhydigital builds responsive, fast-loading, SEO-optimized corporate websites and custom portals.",
+  keywords: [
+    "Web Development Company Hyderabad",
+    "Custom Website Developers",
+    "Next.js React Web Development",
+    "Corporate Website Design Hyderabad",
+    "Full-Stack Web Developers India"
+  ],
+  openGraph: {
+    title: "Custom Web Development Company in Hyderabad | Nexhydigital",
+    description: "Build fast-loading, modern, SEO-optimized web applications and corporate websites with Nexhydigital in Hyderabad.",
+    url: "https://nexhydigital.in/web-development-company-hyderabad",
+    siteName: "Nexhydigital",
+    type: "website",
+  },
   alternates: {
     canonical: "https://nexhydigital.in/web-development-company-hyderabad",
   },

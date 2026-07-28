@@ -43,7 +43,7 @@ export function SiteHeader() {
       }}
       transition={{ type: "spring", stiffness: 300, damping: 30 }}
       style={{ 
-        position: "fixed", top: 0, left: 0, right: 0, zIndex: 100, margin: "0 auto",
+        position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000, margin: "0 auto",
         borderWidth: "1px", borderStyle: "solid",
         backdropFilter: isScrolled ? "blur(24px) saturate(150%)" : "none",
         WebkitBackdropFilter: isScrolled ? "blur(24px) saturate(150%)" : "none",

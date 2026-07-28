@@ -1,8 +1,22 @@
 import { ServiceLandingPage } from "@/components/service-landing-page";
 
 export const metadata = {
-  title: "Custom ERP Software Development Company in Hyderabad | Nexhy Digital",
-  description: "Looking for an enterprise ERP development company in Hyderabad? Nexhy Digital designs unified ERP systems for HR, inventory, payroll, and business operations.",
+  title: "Custom ERP Software Development Company in Hyderabad | Nexhydigital",
+  description: "Enterprise ERP software development company in Hyderabad. Nexhydigital builds unified custom ERP systems for HR, inventory, payroll, GST billing, and multi-branch operations.",
+  keywords: [
+    "ERP Software Development Hyderabad",
+    "Custom ERP Developers",
+    "HRM & Payroll Software",
+    "GST Billing ERP System",
+    "Enterprise Resource Planning India"
+  ],
+  openGraph: {
+    title: "Custom ERP Software Development Company in Hyderabad | Nexhydigital",
+    description: "Streamline operations with custom ERP systems for HR, inventory, payroll, and business reporting built in Hyderabad.",
+    url: "https://nexhydigital.in/erp-development",
+    siteName: "Nexhydigital",
+    type: "website",
+  },
   alternates: {
     canonical: "https://nexhydigital.in/erp-development",
   },

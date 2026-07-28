@@ -5,14 +5,31 @@ import { Reveal } from '@/components/reveal';
 import { companyHighlights } from '@/data/site-data';
 
 export const metadata = {
-  title: 'Contact | Nexhydigital',
-  description: "Let's build something great together. Get in touch with Nexhydigital — we respond within 24 hours.",
+  title: 'Contact Us | Nexhydigital — Hyderabad Enterprise IT Partner',
+  description: "Get in touch with Nexhydigital in Hyderabad for free IT consulting, ERP software estimates, school portal demos, and custom software quotes. Phone: +91 9603230138.",
+  keywords: [
+    "Contact Nexhydigital",
+    "IT Company Contact Hyderabad",
+    "Software Development Quote",
+    "Free IT Consultation Hyderabad",
+    "Hyderabad Tech Support"
+  ],
+  openGraph: {
+    title: 'Contact Us | Nexhydigital — Hyderabad Enterprise IT Partner',
+    description: "Connect with Nexhydigital's engineering team in Hyderabad. Get a free project scope, honest pricing, and response within 24 hours.",
+    url: 'https://nexhydigital.in/contact',
+    siteName: 'Nexhydigital',
+    type: 'website',
+  },
+  alternates: {
+    canonical: 'https://nexhydigital.in/contact',
+  },
 };
 
 const contactInfo = [
   { icon: '📍', label: 'Location', value: 'Hyderabad, Telangana, India' },
-  { icon: '📧', label: 'Email', value: 'asr082239@gmail.com' },
-  { icon: '📞', label: 'Phone', value: '+91 9603230138' },
+  { icon: '📧', label: 'Email', value: 'nexhydigital@gmail.com' },
+  { icon: '📞', label: 'Phone', value: '+91 9603230138, +91 91213 91173, +91 90001 80485' },
   { icon: '⏰', label: 'Response Time', value: 'Within 24 hours' },
 ];
 
@@ -66,7 +83,19 @@ export default function ContactPage() {
                           {label}
                         </span>
                         <span style={{ display: 'block', fontWeight: 600, color: 'var(--primary)', fontSize: '0.95rem' }}>
-                          {value}
+                          {label === 'Email' ? (
+                            <a href={`mailto:${value}`} className="contact-redirect-link">
+                              {value}
+                            </a>
+                          ) : label === 'Phone' ? (
+                            <>
+                              <a href="tel:+919603230138" className="contact-redirect-link">+91 9603230138</a>,{' '}
+                              <a href="tel:+919121391173" className="contact-redirect-link">+91 91213 91173</a>,{' '}
+                              <a href="tel:+919000180485" className="contact-redirect-link">+91 90001 80485</a>
+                            </>
+                          ) : (
+                            value
+                          )}
                         </span>
                       </div>
                     </div>

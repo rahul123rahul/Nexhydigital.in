@@ -1,9 +1,31 @@
-"use client";
-
 import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/reveal";
 import { solutions, industries, techStack, roadmapSteps } from "@/data/site-data";
+
+export const metadata = {
+  title: "Enterprise IT Services & Custom Software Development | Nexhydigital",
+  description: "Discover Nexhydigital's IT services: custom ERP software, school management portals, mobile app development (iOS & Android), e-commerce platforms, and 24/7 website maintenance in Hyderabad.",
+  keywords: [
+    "ERP Software Development Hyderabad",
+    "School Management Software",
+    "College Portal Development",
+    "Mobile App Development Hyderabad",
+    "Custom Web Applications",
+    "E-Commerce Web Development",
+    "Website Maintenance Services"
+  ],
+  openGraph: {
+    title: "Enterprise IT Services & Custom Software Development | Nexhydigital",
+    description: "Enterprise ERPs, school portals, mobile apps, custom web platforms, and long-term IT maintenance engineered in Hyderabad.",
+    url: "https://nexhydigital.in/services",
+    siteName: "Nexhydigital",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://nexhydigital.in/services",
+  },
+};
 
 export default function ServicesPage() {
   return (
@@ -35,7 +57,7 @@ export default function ServicesPage() {
                   <div className="lp-bento-icon">{item.icon}</div>
                   <h3 className="lp-bento-title">{item.title}</h3>
                   <p className="lp-bento-desc">{item.description}</p>
-                  <Link href="/contact" className="lp-bento-arrow" style={{ opacity: 1, transform: "none", textDecoration: "none" }}>
+                  <Link href={`/contact?service=${encodeURIComponent(item.title)}`} className="lp-bento-arrow" style={{ opacity: 1, transform: "none", textDecoration: "none" }}>
                     Get a Quote →
                   </Link>
                 </article>
@@ -111,9 +133,7 @@ export default function ServicesPage() {
                   background: "var(--surface)",
                   boxShadow: "var(--shadow)",
                   transition: "all 240ms ease"
-                }}
-                  onMouseEnter={(e) => { e.currentTarget.style.borderColor = "color-mix(in srgb, var(--accent) 35%, var(--line))"; e.currentTarget.style.transform = "translateX(6px)"; }}
-                  onMouseLeave={(e) => { e.currentTarget.style.borderColor = "var(--line)"; e.currentTarget.style.transform = ""; }}>
+                }}>
                   <div style={{
                     fontSize: "2.4rem",
                     fontWeight: 900,
