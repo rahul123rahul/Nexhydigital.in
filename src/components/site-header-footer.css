@@ -399,11 +399,7 @@
 /* DARK MODE ADJUSTMENTS */
 /* ═══════════════════════════════════════════════════════════════ */
 
-:root[data-theme="dark"] .topbar {
-  background: linear-gradient(180deg,
-      rgba(3, 9, 20, 0.98),
-      rgba(6, 14, 28, 0.92));
-}
+/* Header/navbar background is intentionally fixed — no dark mode override */
 
 :root[data-theme="dark"] .site-footer {
   background: linear-gradient(180deg,
