@@ -64,9 +64,9 @@ export async function POST(request) {
     });
 
     // G. Send "Agreement Signed / Project Kickoff" email to customer
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-    const autoReplyTemplate = process.env.NEXT_PUBLIC_EMAILJS_AUTOREPLY_TEMPLATE;
+    const serviceId = process.env.EMAILJS_SERVICE_ID;
+    const publicKey = process.env.EMAILJS_PUBLIC_KEY;
+    const autoReplyTemplate = process.env.EMAILJS_AUTOREPLY_TEMPLATE;
 
     if (serviceId && publicKey && autoReplyTemplate) {
       try {

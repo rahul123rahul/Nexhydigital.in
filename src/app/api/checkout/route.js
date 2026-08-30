@@ -247,9 +247,9 @@ This Agreement is made between Nexhydigital Enterprise and the client ${name} re
 
     // G. Send Confirmation Email via EmailJS REST API
     let emailSent = false;
-    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-    const autoReplyTemplate = process.env.NEXT_PUBLIC_EMAILJS_AUTOREPLY_TEMPLATE;
+    const serviceId = process.env.EMAILJS_SERVICE_ID;
+    const publicKey = process.env.EMAILJS_PUBLIC_KEY;
+    const autoReplyTemplate = process.env.EMAILJS_AUTOREPLY_TEMPLATE;
 
     if (serviceId && publicKey && autoReplyTemplate) {
       try {

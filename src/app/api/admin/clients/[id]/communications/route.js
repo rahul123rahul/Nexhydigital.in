@@ -52,9 +52,9 @@ export async function POST(request, { params }) {
 
     // If type is email and EmailJS is configured, dispatch a real email
     if (type === "email") {
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-      const template = process.env.NEXT_PUBLIC_EMAILJS_AUTOREPLY_TEMPLATE;
+      const serviceId = process.env.EMAILJS_SERVICE_ID;
+      const publicKey = process.env.EMAILJS_PUBLIC_KEY;
+      const template = process.env.EMAILJS_AUTOREPLY_TEMPLATE;
       if (serviceId && publicKey && template) {
         try {
           await fetch("https://api.emailjs.com/api/v1.0/email/send", {
