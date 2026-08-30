@@ -14,6 +14,7 @@ function ContactFormContent() {
   });
   const [submitting, setSubmitting] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState("");
 
   const searchParams = useSearchParams();
   const plan = searchParams ? searchParams.get("plan") : null;
@@ -86,6 +87,7 @@ function ContactFormContent() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
+    setError("");
     
     // 1. Save to database backend
     let dbSaved = false;
@@ -144,20 +146,25 @@ function ContactFormContent() {
           publicKey
         );
       } else {
-        console.warn("EmailJS configuration is missing, skipped email alerts.");
+        // EmailJS not configured — still succeed if DB saved
+        if (!dbSaved) {
+          setError("Email configuration is not set up. Please contact us directly at info@nexhydigital.in");
+          setSubmitting(false);
+          return;
+        }
       }
 
       setSuccess(true);
       setForm({ name: "", email: "", phone: "", service: "", budget: "", message: "" });
-    } catch (error) {
-      console.error("EmailJS Error Details:", error);
+    } catch (err) {
+      console.error("EmailJS Error Details:", err);
       if (dbSaved) {
-        // Safe to proceed since we saved in the DB
+        // DB saved successfully — treat as success
         setSuccess(true);
         setForm({ name: "", email: "", phone: "", service: "", budget: "", message: "" });
       } else {
-        const errorMessage = error?.text || error?.message || "Unknown error occurred";
-        alert(`Failed to send enquiry: ${errorMessage}`);
+        const errorMessage = err?.text || err?.message || "Something went wrong. Please try again.";
+        setError(`Failed to send your enquiry: ${errorMessage}`);
       }
     } finally {
       setSubmitting(false);
@@ -168,9 +175,12 @@ function ContactFormContent() {
     return (
       <div style={{ padding: "40px", background: "var(--surface-alt)", borderRadius: "16px", border: "1px solid var(--line)", textAlign: "center", height: "100%", display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center" }}>
         <div style={{ fontSize: "3.5rem", marginBottom: "16px" }}>🎉</div>
-        <h3 style={{ margin: "0 0 12px", color: "var(--primary)", fontSize: "1.5rem" }}>Enquiry Sent!</h3>
-        <p style={{ color: "var(--muted)", margin: "0 0 24px", lineHeight: "1.6" }}>
-          Thank you for reaching out. Our team will review your project details and get back to you within 24 hours.
+        <h3 style={{ margin: "0 0 12px", color: "var(--primary)", fontSize: "1.5rem" }}>Message Sent Successfully!</h3>
+        <p style={{ color: "var(--muted)", margin: "0 0 8px", lineHeight: "1.6" }}>
+          Thank you, <strong>{form.name || "there"}</strong>! We&apos;ve received your enquiry.
+        </p>
+        <p style={{ color: "var(--muted)", margin: "0 0 24px", lineHeight: "1.6", fontSize: "0.9rem" }}>
+          Our team will review your project details and reach out to you at <strong>{form.email || "your email"}</strong> within <strong>24 hours</strong>.
         </p>
         <button onClick={() => setSuccess(false)} className="button button-outline">
           Submit Another Enquiry
@@ -252,6 +262,20 @@ function ContactFormContent() {
         <textarea suppressHydrationWarning id="message" name="message" rows="4" value={form.message} onChange={handleChange} style={{ padding: "12px", borderRadius: "8px", border: "1px solid var(--line)", background: "var(--surface-alt)", color: "var(--primary)", resize: "vertical", fontFamily: "inherit" }} placeholder="Tell us a little bit about what you're looking to build..."></textarea>
       </div>
 
+      {error && (
+        <div style={{
+          padding: "12px 16px",
+          borderRadius: "8px",
+          background: "rgba(239,68,68,0.1)",
+          border: "1px solid rgba(239,68,68,0.4)",
+          color: "#ef4444",
+          fontSize: "0.88rem",
+          lineHeight: "1.5"
+        }}>
+          ⚠️ {error}
+        </div>
+      )}
+
       <button 
         suppressHydrationWarning
         type="submit" 
@@ -259,7 +283,7 @@ function ContactFormContent() {
         className="button button-glow" 
         style={{ width: "100%", padding: "14px", fontSize: "1rem", marginTop: "8px" }}
       >
-        {submitting ? "Submitting..." : "Get a Free Quote →"}
+        {submitting ? "Sending..." : "Get a Free Quote →"}
       </button>
     </form>
   );
