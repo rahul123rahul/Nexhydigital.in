@@ -40,7 +40,7 @@ export function SiteFooter() {
           </p>
           <div style={{ marginTop: "16px", display: "flex", gap: "12px", alignItems: "center" }}>
             <a
-              href="https://www.linkedin.com/in/nexhy-digital-191093424/"
+              href="https://www.linkedin.com/company/144772227"
               target="_blank"
               rel="noreferrer"
               aria-label="Nexhydigital LinkedIn Profile"

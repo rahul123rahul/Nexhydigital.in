@@ -84,7 +84,7 @@ const organizationSchema = {
   "url": "https://nexhydigital.in",
   "logo": "https://nexhydigital.in/logo.png",
   "sameAs": [
-    "https://www.linkedin.com/in/nexhy-digital-191093424/",
+    "https://www.linkedin.com/company/144772227",
     "https://www.instagram.com/nexhydigital/?hl=en",
     "https://github.com/rahul123rahul/Nexhydigital.in"
   ]
