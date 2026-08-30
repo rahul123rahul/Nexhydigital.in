@@ -1,7 +1,6 @@
 "use client";
 import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
-import emailjs from "@emailjs/browser";
 
 function ContactFormContent() {
   const [form, setForm] = useState({
@@ -88,11 +87,9 @@ function ContactFormContent() {
     e.preventDefault();
     setSubmitting(true);
     setError("");
-    
-    // 1. Save to database backend
-    let dbSaved = false;
+
     try {
-      const dbRes = await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -105,67 +102,16 @@ function ContactFormContent() {
           source: "Website Form"
         })
       });
-      const dbData = await dbRes.json();
-      if (dbData.ok) {
-        dbSaved = true;
-      }
-    } catch (dbErr) {
-      console.error("Failed to save enquiry to database:", dbErr);
-    }
-
-    // 2. Send via EmailJS (if credentials available)
-    try {
-      const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
-      const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
-      const adminTemplate = process.env.NEXT_PUBLIC_EMAILJS_ADMIN_TEMPLATE;
-      const autoReplyTemplate = process.env.NEXT_PUBLIC_EMAILJS_AUTOREPLY_TEMPLATE;
-
-      if (serviceId && publicKey && adminTemplate && autoReplyTemplate) {
-        const templateParams = {
-          user_name: form.name,
-          user_email: form.email,
-          user_phone: form.phone,
-          service: form.service,
-          budget: form.budget,
-          message: form.message,
-        };
-
-        // Send to Admin
-        await emailjs.send(
-          serviceId,
-          adminTemplate,
-          templateParams,
-          publicKey
-        );
-
-        // Send Auto Reply to Customer
-        await emailjs.send(
-          serviceId,
-          autoReplyTemplate,
-          templateParams,
-          publicKey
-        );
-      } else {
-        // EmailJS not configured — still succeed if DB saved
-        if (!dbSaved) {
-          setError("Email configuration is not set up. Please contact us directly at info@nexhydigital.in");
-          setSubmitting(false);
-          return;
-        }
-      }
-
-      setSuccess(true);
-      setForm({ name: "", email: "", phone: "", service: "", budget: "", message: "" });
-    } catch (err) {
-      console.error("EmailJS Error Details:", err);
-      if (dbSaved) {
-        // DB saved successfully — treat as success
+      const data = await res.json();
+      if (data.ok) {
         setSuccess(true);
         setForm({ name: "", email: "", phone: "", service: "", budget: "", message: "" });
       } else {
-        const errorMessage = err?.text || err?.message || "Something went wrong. Please try again.";
-        setError(`Failed to send your enquiry: ${errorMessage}`);
+        setError(data.error || "Something went wrong. Please try again.");
       }
+    } catch (err) {
+      console.error("Contact form error:", err);
+      setError("Network error. Please check your connection and try again.");
     } finally {
       setSubmitting(false);
     }
