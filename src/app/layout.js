@@ -73,7 +73,7 @@ export const metadata = {
     apple: "/logo-mark.png",
   },
   verification: {
-    google: "Ikuj6Ga2kqWGvuWQuZCyB3-UkzYiyzNU-6eaWB4A72w",
+    google: "wyXRxAERTncHWEdNtZiuWjfcXpTVIh4aO6cWMndDZtU",
   },
 };
 
