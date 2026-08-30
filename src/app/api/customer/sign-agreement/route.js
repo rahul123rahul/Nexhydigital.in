@@ -66,9 +66,10 @@ export async function POST(request) {
     // G. Send "Agreement Signed / Project Kickoff" email to customer
     const serviceId = process.env.EMAILJS_SERVICE_ID;
     const publicKey = process.env.EMAILJS_PUBLIC_KEY;
+    const privateKey = process.env.EMAILJS_PRIVATE_KEY;
     const autoReplyTemplate = process.env.EMAILJS_AUTOREPLY_TEMPLATE;
 
-    if (serviceId && publicKey && autoReplyTemplate) {
+    if (serviceId && publicKey && privateKey && autoReplyTemplate) {
       try {
         const emailRes = await fetch("https://api.emailjs.com/api/v1.0/email/send", {
           method: "POST",
@@ -77,6 +78,7 @@ export async function POST(request) {
             service_id: serviceId,
             template_id: autoReplyTemplate,
             user_id: publicKey,
+            accessToken: privateKey,
             template_params: {
               user_name: agreement.customer_name,
               user_email: agreement.customer_email,

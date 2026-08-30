@@ -249,9 +249,10 @@ This Agreement is made between Nexhydigital Enterprise and the client ${name} re
     let emailSent = false;
     const serviceId = process.env.EMAILJS_SERVICE_ID;
     const publicKey = process.env.EMAILJS_PUBLIC_KEY;
+    const privateKey = process.env.EMAILJS_PRIVATE_KEY;
     const autoReplyTemplate = process.env.EMAILJS_AUTOREPLY_TEMPLATE;
 
-    if (serviceId && publicKey && autoReplyTemplate) {
+    if (serviceId && publicKey && privateKey && autoReplyTemplate) {
       try {
         const emailParams = {
           user_name: name,
@@ -269,6 +270,7 @@ This Agreement is made between Nexhydigital Enterprise and the client ${name} re
             service_id: serviceId,
             template_id: autoReplyTemplate,
             user_id: publicKey,
+            accessToken: privateKey,
             template_params: emailParams
           })
         });

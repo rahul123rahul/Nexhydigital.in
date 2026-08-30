@@ -54,8 +54,9 @@ export async function POST(request, { params }) {
     if (type === "email") {
       const serviceId = process.env.EMAILJS_SERVICE_ID;
       const publicKey = process.env.EMAILJS_PUBLIC_KEY;
+      const privateKey = process.env.EMAILJS_PRIVATE_KEY;
       const template = process.env.EMAILJS_AUTOREPLY_TEMPLATE;
-      if (serviceId && publicKey && template) {
+      if (serviceId && publicKey && privateKey && template) {
         try {
           await fetch("https://api.emailjs.com/api/v1.0/email/send", {
             method: "POST",
@@ -64,6 +65,7 @@ export async function POST(request, { params }) {
               service_id: serviceId,
               template_id: template,
               user_id: publicKey,
+              accessToken: privateKey,
               template_params: {
                 user_email: client_email,
                 user_name: "Valued Client",
