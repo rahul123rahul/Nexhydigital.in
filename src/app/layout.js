@@ -81,16 +81,21 @@ export const metadata = {
   authors: [{ name: "Nexhy Digital", url: "https://nexhydigital.in" }],
   creator: "Nexhy Digital",
   publisher: "Nexhy Digital",
+  formatDetection: {
+    email: true,
+    address: true,
+    telephone: true,
+  },
   openGraph: {
-    title: "Nexhy Digital | Enterprise IT Solutions & Software Development Hyderabad",
-    description: "Nexhy Digital — Hyderabad's trusted IT partner architecting ERP systems, school platforms, mobile apps, and custom web solutions.",
+    title: "Nexhy Digital | Enterprise IT Solutions, ERP & Web Development Hyderabad",
+    description: "Nexhy Digital — Hyderabad's trusted enterprise IT partner. Custom ERP software, school management systems, mobile apps, and 24/7 technical support.",
     url: "https://nexhydigital.in",
     siteName: "Nexhy Digital",
     images: [
       {
-        url: "/logo.png",
-        width: 800,
-        height: 600,
+        url: "https://nexhydigital.in/logo.png",
+        width: 1200,
+        height: 630,
         alt: "Nexhy Digital — Enterprise IT Solutions Hyderabad",
       },
     ],
@@ -100,8 +105,10 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Nexhy Digital | Enterprise IT Solutions Hyderabad",
-    description: "Nexhy Digital — Hyderabad's trusted IT partner architecting ERP systems, school platforms, mobile apps, and custom web solutions.",
-    images: ["/logo.png"],
+    description: "Nexhy Digital — Hyderabad's premier IT company architecting custom ERPs, school portals, and mobile apps.",
+    images: ["https://nexhydigital.in/logo.png"],
+    site: "@nexhydigital",
+    creator: "@nexhydigital",
   },
   robots: {
     index: true,
@@ -130,15 +137,37 @@ export const metadata = {
 const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+  "@id": "https://nexhydigital.in/#organization",
   "name": "Nexhy Digital",
   "alternateName": ["Nex", "Nexhy", "Nexhydigital", "Nex Digital", "NexhyDigital", "Nexhydigital Technologies", "Nexhydigital.in"],
   "url": "https://nexhydigital.in",
-  "logo": "https://nexhydigital.in/logo.png",
+  "logo": {
+    "@type": "ImageObject",
+    "url": "https://nexhydigital.in/logo.png",
+    "width": "800",
+    "height": "600"
+  },
   "description": "Nexhy Digital is a Hyderabad-based enterprise IT company delivering custom ERP software, school management systems, mobile apps, and web development solutions.",
   "foundingDate": "2022",
   "areaServed": "India",
   "email": "nexhydigital@gmail.com",
   "telephone": "+91-9603230138",
+  "contactPoint": [
+    {
+      "@type": "ContactPoint",
+      "telephone": "+91-9603230138",
+      "contactType": "customer support",
+      "areaServed": "IN",
+      "availableLanguage": ["en", "te", "hi"]
+    },
+    {
+      "@type": "ContactPoint",
+      "telephone": "+91-9121391173",
+      "contactType": "sales",
+      "areaServed": "IN",
+      "availableLanguage": ["en", "te", "hi"]
+    }
+  ],
   "sameAs": [
     "https://www.linkedin.com/company/144772227",
     "https://www.instagram.com/nexhydigital/?hl=en",
@@ -149,13 +178,91 @@ const organizationSchema = {
 const websiteSchema = {
   "@context": "https://schema.org",
   "@type": "WebSite",
-  "name": "Nexhydigital",
+  "@id": "https://nexhydigital.in/#website",
+  "name": "Nexhy Digital",
+  "alternateName": ["Nexhydigital", "Nex", "Nex Digital", "NexhyDigital"],
   "url": "https://nexhydigital.in",
+  "publisher": {
+    "@id": "https://nexhydigital.in/#organization"
+  },
   "potentialAction": {
     "@type": "SearchAction",
-    "target": "https://nexhydigital.in/services?q={search_term_string}",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": "https://nexhydigital.in/services?q={search_term_string}"
+    },
     "query-input": "required name=search_term_string"
   }
+};
+
+// ── Google Sitelinks Structured Data (SiteNavigationElement) ───────────────
+const sitelinksSchema = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://nexhydigital.in/#nav-services",
+      "name": "Services",
+      "description": "Enterprise IT solutions, ERP, School Software, Mobile & Web development",
+      "url": "https://nexhydigital.in/services"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://nexhydigital.in/#nav-erp",
+      "name": "ERP Software Development",
+      "description": "Custom ERP systems for HR, inventory, payroll, GST billing, and reporting",
+      "url": "https://nexhydigital.in/erp-development"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://nexhydigital.in/#nav-school",
+      "name": "School Management Software",
+      "description": "School ERP, student attendance, online fee collection, and parent alerts",
+      "url": "https://nexhydigital.in/school-management-software"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://nexhydigital.in/#nav-mobile",
+      "name": "Mobile App Development",
+      "description": "iOS and Android apps with React Native, Flutter, and scalable backends",
+      "url": "https://nexhydigital.in/mobile-app-development"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://nexhydigital.in/#nav-web",
+      "name": "Custom Web Development",
+      "description": "Fast Next.js websites, corporate portals, and custom web applications",
+      "url": "https://nexhydigital.in/web-development-company-hyderabad"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://nexhydigital.in/#nav-portfolio",
+      "name": "Portfolio & Case Studies",
+      "description": "Live enterprise client projects including AVNIET college and Lathika clinic",
+      "url": "https://nexhydigital.in/portfolio"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://nexhydigital.in/#nav-careers",
+      "name": "Careers",
+      "description": "Join Nexhy Digital software engineering and design teams in Hyderabad",
+      "url": "https://nexhydigital.in/careers"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://nexhydigital.in/#nav-contact",
+      "name": "Contact Us",
+      "description": "Free IT consultation, custom software proposals, and project estimates",
+      "url": "https://nexhydigital.in/contact"
+    },
+    {
+      "@type": "SiteNavigationElement",
+      "@id": "https://nexhydigital.in/#nav-about",
+      "name": "About Us",
+      "description": "Learn about Nexhy Digital - Hyderabad's trusted enterprise technology partner",
+      "url": "https://nexhydigital.in/about"
+    }
+  ]
 };
 
 const localBusinessSchema = {
@@ -286,6 +393,10 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(sitelinksSchema) }}
         />
       </head>
       <body suppressHydrationWarning>

@@ -17,7 +17,7 @@ export function SiteFooter() {
         className="container footer-grid"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 250px), 1fr))",
+          gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 200px), 1fr))",
           gap: "32px",
           paddingTop: "60px",
           paddingBottom: "40px"
@@ -106,6 +106,33 @@ export function SiteFooter() {
                 {item.label}
               </Link>
             ))}
+          </div>
+        </div>
+
+        <div>
+          <h4 style={{ marginTop: 0, marginBottom: "16px", fontSize: "0.95rem", fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.02em", color: "var(--primary)" }}>Services</h4>
+          <div className="footer-links" style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
+            <Link href="/erp-development" style={{ color: "var(--muted)", textDecoration: "none", fontSize: "0.9rem", fontWeight: 500, transition: "color 0.2s ease" }}>
+              ERP Software
+            </Link>
+            <Link href="/school-management-software" style={{ color: "var(--muted)", textDecoration: "none", fontSize: "0.9rem", fontWeight: 500, transition: "color 0.2s ease" }}>
+              School Management
+            </Link>
+            <Link href="/mobile-app-development" style={{ color: "var(--muted)", textDecoration: "none", fontSize: "0.9rem", fontWeight: 500, transition: "color 0.2s ease" }}>
+              Mobile App Development
+            </Link>
+            <Link href="/web-development-company-hyderabad" style={{ color: "var(--muted)", textDecoration: "none", fontSize: "0.9rem", fontWeight: 500, transition: "color 0.2s ease" }}>
+              Web Development
+            </Link>
+            <Link href="/custom-crm-development" style={{ color: "var(--muted)", textDecoration: "none", fontSize: "0.9rem", fontWeight: 500, transition: "color 0.2s ease" }}>
+              Custom CRM Systems
+            </Link>
+            <Link href="/ecommerce-development" style={{ color: "var(--muted)", textDecoration: "none", fontSize: "0.9rem", fontWeight: 500, transition: "color 0.2s ease" }}>
+              E-Commerce Stores
+            </Link>
+            <Link href="/website-maintenance" style={{ color: "var(--muted)", textDecoration: "none", fontSize: "0.9rem", fontWeight: 500, transition: "color 0.2s ease" }}>
+              Website Maintenance
+            </Link>
           </div>
         </div>
 
