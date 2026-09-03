@@ -6,8 +6,10 @@ export const metadata = {
     // Brand variants
     "Nexhy Digital",
     "Nexhy",
+    "Nex",
     "Nexhydigital",
     "Nex Digital",
+    "Nex Software",
     "Nexhy Digital Hyderabad",
     "Nexhydigital.in",
     // ERP

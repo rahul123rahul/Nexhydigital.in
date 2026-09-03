@@ -16,6 +16,8 @@ export const metadata = {
   keywords: [
     "About Nexhy Digital",
     "About Nexhydigital",
+    "About Nex",
+    "Nex",
     "Nexhy Digital Hyderabad",
     "Hyderabad IT Company",
     "Software Development Team Hyderabad",
