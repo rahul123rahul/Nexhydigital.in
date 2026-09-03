@@ -1,7 +1,30 @@
-"use client";
-
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/reveal";
+
+export const metadata = {
+  title: "Terms of Service | Nexhy Digital — Engagement, Billing & SLA",
+  description:
+    "Review the terms of service for Nexhy Digital IT solutions. Covers project billing milestones, payment methods, refund policy, SLA support conditions, and intellectual property transfer.",
+  keywords: [
+    "Nexhy Digital Terms of Service",
+    "Nexhydigital SLA",
+    "IT Service Agreement India"
+  ],
+  openGraph: {
+    title: "Terms of Service | Nexhy Digital",
+    description: "Review the legal guidelines, payment schedules, refund rules, and SLA conditions for Nexhy Digital IT solutions.",
+    url: "https://nexhydigital.in/terms",
+    siteName: "Nexhy Digital",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://nexhydigital.in/terms",
+  },
+  robots: {
+    index: true,
+    follow: false,
+  },
+};
 
 export default function TermsPage() {
   return (

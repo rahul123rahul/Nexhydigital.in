@@ -1,20 +1,31 @@
 import { ServiceLandingPage } from "@/components/service-landing-page";
 
 export const metadata = {
-  title: "E-Commerce Website Development in Hyderabad | Nexhydigital",
-  description: "Launch online retail stores & custom e-commerce web portals with Nexhydigital. Fast checkout, UPI/Razorpay payment gateway integration, stock inventory management, and SEO.",
+  title: "E-Commerce Website Development Hyderabad | Online Store & Digital Solutions | Nexhy Digital",
+  description: "Nexhy Digital builds e-commerce websites and online stores in Hyderabad. UPI/Razorpay payment gateway, inventory management, and SEO-optimized digital solutions. E-commerce developers near you.",
   keywords: [
+    "E-Commerce Website",
+    "E-Commerce Development",
+    "Online Store Development",
     "E-Commerce Web Development Hyderabad",
-    "Online Store Developers",
+    "Websites",
+    "Digital",
+    "Digital Solutions",
+    "Tech Solutions",
+    "IT Solutions",
+    "Solutions",
+    "E-Commerce Developers Near Me",
+    "Online Store Developers Hyderabad",
+    "Nexhy Digital E-Commerce",
     "Custom E-Commerce Portal",
     "Razorpay UPI Payment Gateway Integration",
     "Online Shopping Site Builder India"
   ],
   openGraph: {
-    title: "E-Commerce Website Development in Hyderabad | Nexhydigital",
-    description: "Launch your retail store online with a secure, highly-optimized e-commerce portal, instant checkout, and inventory sync.",
+    title: "E-Commerce Website Development Hyderabad | Digital Solutions | Nexhy Digital",
+    description: "Launch your online store with secure checkout, inventory sync, and UPI payments. E-commerce developers near you — Nexhy Digital Hyderabad.",
     url: "https://nexhydigital.in/ecommerce-development",
-    siteName: "Nexhydigital",
+    siteName: "Nexhy Digital",
     type: "website",
   },
   alternates: {

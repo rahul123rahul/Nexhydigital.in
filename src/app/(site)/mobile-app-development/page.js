@@ -1,20 +1,30 @@
 import { ServiceLandingPage } from "@/components/service-landing-page";
 
 export const metadata = {
-  title: "Mobile App Development Company in Hyderabad | Android & iOS Apps — Nexhydigital",
-  description: "Turn your ideas into premium mobile apps. Nexhydigital builds scalable Android and iOS applications using React Native and Flutter for startups & enterprises in Hyderabad.",
+  title: "Mobile App Development Company Hyderabad | Android & iOS Apps | Nexhy Digital",
+  description: "Nexhy Digital builds scalable Android and iOS mobile apps using React Native and Flutter. Top app developers near you in Hyderabad. Tech solutions for startups and enterprises across India.",
   keywords: [
+    "Mobile App Development",
     "Mobile App Development Hyderabad",
+    "App Development",
+    "App Developers Near Me",
+    "App Developers Hyderabad",
     "Android App Developers Hyderabad",
     "iOS App Development",
     "React Native Flutter Apps",
-    "Mobile App Company India"
+    "Tech Solutions",
+    "IT Solutions",
+    "Developers Near Me",
+    "App Development Company Near Me",
+    "Mobile App Company India",
+    "Nexhy Digital Mobile Apps",
+    "Software Developers Near Hyderabad"
   ],
   openGraph: {
-    title: "Mobile App Development Company in Hyderabad | Android & iOS Apps — Nexhydigital",
-    description: "Build scalable cross-platform mobile apps for Android and iOS with native speed and seamless UI design.",
+    title: "Mobile App Development Company Hyderabad | Android & iOS | Nexhy Digital",
+    description: "Top mobile app developers near you in Hyderabad. Build Android & iOS apps with React Native or Flutter — Nexhy Digital.",
     url: "https://nexhydigital.in/mobile-app-development",
-    siteName: "Nexhydigital",
+    siteName: "Nexhy Digital",
     type: "website",
   },
   alternates: {

@@ -1,20 +1,32 @@
 import { ServiceLandingPage } from "@/components/service-landing-page";
 
 export const metadata = {
-  title: "Website Maintenance & Technical Support Services in Hyderabad | Nexhydigital",
-  description: "Keep your site secure, fast, and 99.9% online. Daily cloud backups, SSL security patches, speed optimization, and 24/7 technical support from Nexhydigital in Hyderabad.",
+  title: "Website Maintenance & IT Support Services Hyderabad | Tech Solutions | Nexhy Digital",
+  description: "Nexhy Digital provides 24/7 website maintenance, IT support, and tech solutions in Hyderabad. Daily backups, SSL patches, speed optimization. IT support near you.",
   keywords: [
+    "Website Maintenance",
+    "IT Support",
+    "IT Support Near Me",
+    "IT Support Hyderabad",
+    "Tech Solutions",
+    "Tech Solutions Hyderabad",
+    "IT Solutions",
+    "IT Softwares",
+    "Solutions",
+    "Digital Solutions",
+    "Website Support Near Me",
+    "Web Maintenance Hyderabad",
+    "Nexhy Digital Maintenance",
     "Website Maintenance Services Hyderabad",
-    "IT Support Packages",
     "Website Security & SSL Patches",
     "Speed Optimization Services",
     "Website Bug Fixes & Support India"
   ],
   openGraph: {
-    title: "Website Maintenance & Technical Support Services in Hyderabad | Nexhydigital",
-    description: "Keep your website secure, fast, and up-to-date with 24/7 technical support, malware scanning, and cloud backups.",
+    title: "Website Maintenance & IT Support Services Hyderabad | Nexhy Digital",
+    description: "24/7 website maintenance, IT support, and tech solutions near you in Hyderabad. Daily backups, security patches, speed optimization — Nexhy Digital.",
     url: "https://nexhydigital.in/website-maintenance",
-    siteName: "Nexhydigital",
+    siteName: "Nexhy Digital",
     type: "website",
   },
   alternates: {

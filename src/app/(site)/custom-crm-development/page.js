@@ -1,20 +1,31 @@
 import { ServiceLandingPage } from "@/components/service-landing-page";
 
 export const metadata = {
-  title: "Custom CRM Software Development Company in Hyderabad | Nexhydigital",
-  description: "Streamline sales pipelines, client communication, and deal management with custom CRM software built for your business workflow by Nexhydigital in Hyderabad.",
+  title: "Custom CRM & Web Application Development Hyderabad | IT Solutions | Nexhy Digital",
+  description: "Nexhy Digital builds custom CRM software, booking systems, dashboards, and web applications in Hyderabad. Top IT solutions and tech solutions company near you.",
   keywords: [
-    "Custom CRM Software Hyderabad",
+    "Custom CRM Software",
+    "CRM Software Hyderabad",
+    "Web Applications",
+    "Custom Web Applications",
+    "IT Solutions",
+    "IT Softwares",
+    "Tech Solutions",
+    "Solutions",
+    "Digital Solutions",
+    "IT Company Near Me",
+    "Software Developers Near Me",
+    "Nexhy Digital CRM",
     "CRM Development Company",
     "Sales Pipeline Tracking System",
     "Lead Management Software India",
     "Client Portal Software"
   ],
   openGraph: {
-    title: "Custom CRM Software Development Company in Hyderabad | Nexhydigital",
-    description: "Streamline customer relationships, lead pipelines, and sales conversions with custom CRM software.",
+    title: "Custom CRM & Web Application Development Hyderabad | Nexhy Digital",
+    description: "Custom CRM systems, sales pipelines, and web applications by Nexhy Digital — top IT solutions company near you in Hyderabad.",
     url: "https://nexhydigital.in/custom-crm-development",
-    siteName: "Nexhydigital",
+    siteName: "Nexhy Digital",
     type: "website",
   },
   alternates: {

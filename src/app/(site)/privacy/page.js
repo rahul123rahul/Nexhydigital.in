@@ -1,7 +1,30 @@
-"use client";
-
 import { PageHero } from "@/components/page-hero";
 import { Reveal } from "@/components/reveal";
+
+export const metadata = {
+  title: "Privacy Policy | Nexhy Digital — Data Protection & Cookie Policy",
+  description:
+    "Nexhy Digital's privacy policy explains how we collect, use, and protect your personal information when you use our IT services, contact forms, and career applications.",
+  keywords: [
+    "Nexhy Digital Privacy Policy",
+    "Nexhydigital Data Protection",
+    "IT Company Privacy India"
+  ],
+  openGraph: {
+    title: "Privacy Policy | Nexhy Digital",
+    description: "Learn how Nexhy Digital collects, uses, and safeguards your information. We prioritize your privacy and data security.",
+    url: "https://nexhydigital.in/privacy",
+    siteName: "Nexhy Digital",
+    type: "website",
+  },
+  alternates: {
+    canonical: "https://nexhydigital.in/privacy",
+  },
+  robots: {
+    index: true,
+    follow: false,
+  },
+};
 
 export default function PrivacyPage() {
   return (

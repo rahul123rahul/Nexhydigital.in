@@ -1,4 +1,20 @@
 User-agent: *
 Allow: /
 
+# Block internal/admin paths from Google crawl budget
+Disallow: /api/
+Disallow: /admin/
+Disallow: /customer/
+Disallow: /checkout/
+Disallow: /login/
+
+# Googlebot-specific rules
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /customer/
+Disallow: /checkout/
+Disallow: /login/
+
 Sitemap: https://nexhydigital.in/sitemap.xml

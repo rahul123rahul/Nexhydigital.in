@@ -10,21 +10,23 @@ import {
 } from "@/data/site-data";
 
 export const metadata = {
-  title: "About Us | Hyderabad Enterprise IT Company — Nexhydigital",
+  title: "About Us | Nexhy Digital — Hyderabad Enterprise IT Company",
   description:
-    "Nexhydigital is a Hyderabad-based enterprise IT company delivering custom software, ERP systems, school portals, and web platforms built on transparency and technical excellence.",
+    "Nexhy Digital (Nexhydigital) is a Hyderabad-based enterprise IT company delivering custom software, ERP systems, school portals, and web platforms built on transparency and technical excellence.",
   keywords: [
+    "About Nexhy Digital",
     "About Nexhydigital",
+    "Nexhy Digital Hyderabad",
     "Hyderabad IT Company",
     "Software Development Team Hyderabad",
     "Enterprise IT Partner",
     "Technology Consulting Hyderabad"
   ],
   openGraph: {
-    title: "About Us | Hyderabad Enterprise IT Company — Nexhydigital",
-    description: "Learn about Nexhydigital — Hyderabad's trusted technology partner building ERP systems, educational portals, and custom web apps.",
+    title: "About Us | Nexhy Digital — Hyderabad Enterprise IT Company",
+    description: "Learn about Nexhy Digital — Hyderabad's trusted technology partner building ERP systems, educational portals, and custom web apps.",
     url: "https://nexhydigital.in/about",
-    siteName: "Nexhydigital",
+    siteName: "Nexhy Digital",
     type: "website",
   },
   alternates: {

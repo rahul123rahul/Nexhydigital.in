@@ -604,7 +604,7 @@ export default function HomePage() {
           <div className="lp-bento-grid">
             {solutions.map((item, i) => (
               <Reveal delay={i * 0.07} key={item.title}>
-                <Link href={`/contact?service=${encodeURIComponent(item.title)}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
+                <Link href={item.href || `/contact?service=${encodeURIComponent(item.title)}`} style={{ textDecoration: "none", color: "inherit", display: "block" }}>
                   <motion.article 
                     className={`lp-bento-card${i === 0 || i === 3 ? " lp-bento-wide" : ""}`}
                     whileHover={{ y: -8, scale: 1.02 }}
@@ -614,7 +614,7 @@ export default function HomePage() {
                     <h3 className="lp-bento-title">{item.title}</h3>
                     <p className="lp-bento-desc">{item.description}</p>
                     <div className="lp-bento-arrow" style={{ display: "flex", alignItems: "center", gap: "6px", fontSize: "0.9rem", fontWeight: 700, color: "var(--accent)" }}>
-                      <span>Get a Quote</span>
+                      <span>Read More</span>
                       <span>→</span>
                     </div>
                   </motion.article>

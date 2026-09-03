@@ -4,22 +4,40 @@ import { Reveal } from "@/components/reveal";
 import { solutions, industries, techStack, roadmapSteps } from "@/data/site-data";
 
 export const metadata = {
-  title: "Enterprise IT Services & Custom Software Development | Nexhydigital",
-  description: "Discover Nexhydigital's IT services: custom ERP software, school management portals, mobile app development (iOS & Android), e-commerce platforms, and 24/7 website maintenance in Hyderabad.",
+  title: "IT Services | ERP Software, School Websites, Mobile Apps & Tech Solutions | Nexhy Digital",
+  description: "Nexhy Digital offers ERP software, school & college websites, mobile app development, e-commerce, CRM, and 24/7 IT support in Hyderabad. Top tech solutions and IT software company near you.",
   keywords: [
-    "ERP Software Development Hyderabad",
+    "Nexhy Digital Services",
+    "Nexhydigital IT Services",
+    "ERP Software",
+    "ERP Software Hyderabad",
+    "School Website",
+    "School Websites Hyderabad",
+    "College Website Development",
     "School Management Software",
-    "College Portal Development",
+    "IT Softwares",
+    "IT Software Company",
+    "Tech Solutions Hyderabad",
+    "Technology Solutions",
+    "Digital Solutions",
+    "Solutions",
+    "IT Solutions",
+    "Websites",
     "Mobile App Development Hyderabad",
     "Custom Web Applications",
     "E-Commerce Web Development",
-    "Website Maintenance Services"
+    "Website Maintenance Services",
+    "Software Developers Near Me",
+    "Developers Near Hyderabad",
+    "IT Company Near Me",
+    "College Portal Development",
+    "Custom Software Development Hyderabad"
   ],
   openGraph: {
-    title: "Enterprise IT Services & Custom Software Development | Nexhydigital",
-    description: "Enterprise ERPs, school portals, mobile apps, custom web platforms, and long-term IT maintenance engineered in Hyderabad.",
+    title: "IT Services | ERP Software, School Websites & Tech Solutions | Nexhy Digital Hyderabad",
+    description: "ERP software, school & college websites, mobile apps, custom web platforms, and IT maintenance engineered in Hyderabad by Nexhy Digital.",
     url: "https://nexhydigital.in/services",
-    siteName: "Nexhydigital",
+    siteName: "Nexhy Digital",
     type: "website",
   },
   alternates: {
@@ -53,14 +71,22 @@ export default function ServicesPage() {
           <div className="lp-bento-grid">
             {solutions.map((item, i) => (
               <Reveal delay={i * 0.07} key={item.title}>
-                <article className={`lp-bento-card${i === 0 || i === 3 ? " lp-bento-wide" : ""}`}>
-                  <div className="lp-bento-icon">{item.icon}</div>
-                  <h3 className="lp-bento-title">{item.title}</h3>
-                  <p className="lp-bento-desc">{item.description}</p>
-                  <Link href={`/contact?service=${encodeURIComponent(item.title)}`} className="lp-bento-arrow" style={{ opacity: 1, transform: "none", textDecoration: "none" }}>
-                    Get a Quote →
-                  </Link>
-                </article>
+                <Link
+                  href={item.href || `/contact?service=${encodeURIComponent(item.title)}`}
+                  style={{ textDecoration: "none", color: "inherit", display: "block" }}
+                >
+                  <article
+                    className={`lp-bento-card${i === 0 || i === 3 ? " lp-bento-wide" : ""}`}
+                    style={{ transition: "transform 220ms ease, box-shadow 220ms ease", cursor: "pointer" }}
+                  >
+                    <div className="lp-bento-icon">{item.icon}</div>
+                    <h3 className="lp-bento-title">{item.title}</h3>
+                    <p className="lp-bento-desc">{item.description}</p>
+                    <span className="lp-bento-arrow" style={{ opacity: 1, transform: "none", textDecoration: "none", display: "inline-flex", alignItems: "center", gap: "6px", fontWeight: 700, color: "var(--accent)" }}>
+                      Read More →
+                    </span>
+                  </article>
+                </Link>
               </Reveal>
             ))}
           </div>

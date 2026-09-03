@@ -1,20 +1,33 @@
 import { ServiceLandingPage } from "@/components/service-landing-page";
 
 export const metadata = {
-  title: "School ERP & Management Software in Hyderabad | Nexhydigital",
-  description: "Automate school admissions, online fee collection, digital attendance, exam marks, and parent SMS alerts with Nexhydigital's School ERP System in Hyderabad.",
+  title: "School & College Website Development | School ERP Software Hyderabad | Nexhy Digital",
+  description: "Nexhy Digital builds professional school & college websites and ERP software in Hyderabad. Online fee payment, digital attendance, exam results, admissions portal, and parent alerts. School tech solutions near you.",
   keywords: [
-    "School Management Software Hyderabad",
+    "School Website",
+    "School Websites",
+    "School Websites Hyderabad",
+    "College Website",
+    "College Website Development",
+    "School",
+    "College",
+    "School College Websites",
+    "School Management Software",
     "School ERP System",
     "College Campus Management",
+    "College Portal Development",
+    "School Management Software Hyderabad",
     "Online Fee Payment Portal",
-    "Student Information System India"
+    "Student Information System India",
+    "Educational Website Development",
+    "School Software Near Me",
+    "Nexhy Digital School Software"
   ],
   openGraph: {
-    title: "School ERP & Management Software in Hyderabad | Nexhydigital",
-    description: "Automate admissions, fees, exams, and attendance with customizable School Management Software built in Hyderabad.",
+    title: "School & College Website Development | School ERP Hyderabad | Nexhy Digital",
+    description: "Professional school & college websites and ERP software with admissions, fees, attendance, and exams. Built in Hyderabad by Nexhy Digital.",
     url: "https://nexhydigital.in/school-management-software",
-    siteName: "Nexhydigital",
+    siteName: "Nexhy Digital",
     type: "website",
   },
   alternates: {

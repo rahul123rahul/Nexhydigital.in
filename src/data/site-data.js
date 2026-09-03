@@ -40,29 +40,36 @@ export const investorMetrics = [
 export const solutions = [
   {
     icon: "🏢", title: "ERP Software",
-    description: "Custom Enterprise Resource Planning — HR, inventory, finance, payroll, and reporting in one unified platform."
+    description: "Custom Enterprise Resource Planning — HR, inventory, finance, payroll, and reporting in one unified platform.",
+    href: "/erp-development"
   },
   {
     icon: "🎓", title: "School & College Websites",
-    description: "Professional mobile-friendly websites with admissions portals, notice boards, gallery, and fee management."
+    description: "Professional mobile-friendly websites with admissions portals, notice boards, gallery, and fee management.",
+    href: "/school-management-software"
   },
   {
     icon: "💼", title: "Portfolio Websites",
-    description: "Stunning personal and business portfolio sites that make a strong first impression and showcase your work."
+    description: "Stunning personal and business portfolio sites that make a strong first impression and showcase your work.",
+    href: "/web-development-company-hyderabad"
   },
   {
     icon: "📱", title: "App Development",
-    description: "Android, iOS, and cross-platform apps built with modern frameworks — from idea to App Store in weeks."
+    description: "Android, iOS, and cross-platform apps built with modern frameworks — from idea to App Store in weeks.",
+    href: "/mobile-app-development"
   },
   {
     icon: "🌐", title: "Custom Web Applications",
-    description: "Tailor-made web platforms — booking systems, dashboards, CRMs, e-commerce, and any custom business tool."
+    description: "Tailor-made web platforms — booking systems, dashboards, CRMs, e-commerce, and any custom business tool.",
+    href: "/custom-crm-development"
   },
   {
     icon: "🔧", title: "Website Maintenance & Support",
-    description: "Ongoing technical support, bug fixes, content updates, security patches, and performance optimisation."
+    description: "Ongoing technical support, bug fixes, content updates, security patches, and performance optimisation.",
+    href: "/website-maintenance"
   },
 ];
+
 
 export const clientLogos = ["Apex Systems", "Vision Academy", "NovaMed Clinics", "Prime Traders", "Crest College", "TechOrbit"];
 export const trustPartners = ["Google Cloud", "Amazon Web Services", "Vercel", "Hostinger"];
